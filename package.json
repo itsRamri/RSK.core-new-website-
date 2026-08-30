@@ -1,11 +1,11 @@
 {
-  "name": "smooth-scroll-animation",
+  "name": "rsk-portfolio-website",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "npx -y vite --open",
-    "build": "npx -y vite build",
-    "preview": "npx -y vite preview",
+    "build": "echo \"Vercel Static Ready\"",
+    "preview": "npx -y serve .",
     "serve": "npx -y serve ."
   },
   "devDependencies": {

@@ -43,10 +43,10 @@ function initHero169ScrollAnimation() {
       loadedFrames.add(i);
       loadingFrames.delete(i);
 
-      if (i === 0) {
-        drawFrame(0);
+      if (i === 0 || lastRenderedFrame === -1) {
+        drawFrame(Math.round(currentFrame));
       }
-      if (loadedFrames.size >= 5 && loader) {
+      if (loadedFrames.size >= 1 && loader) {
         loader.classList.add('ready');
       }
       if (onComplete) onComplete(i);
@@ -54,6 +54,10 @@ function initHero169ScrollAnimation() {
 
     img.onerror = () => {
       loadingFrames.delete(i);
+      // Fallback: dismiss loader so UI is never blocked
+      if (loader) {
+        loader.classList.add('ready');
+      }
     };
 
     img.src = getFramePath(i + 1); // 1-indexed filenames
@@ -208,10 +212,18 @@ function initHero169ScrollAnimation() {
     // 1. Immediately fetch first frame for instant display
     loadSingleFrame(0, () => {
       drawFrame(0);
+      if (loader) loader.classList.add('ready');
     });
 
     // 2. Load first batch (0 to 50)
     loadBatch(0);
+
+    // 3. Safety timeout: dismiss loader after 1.5s regardless of network latency
+    setTimeout(() => {
+      if (loader && !loader.classList.contains('ready')) {
+        loader.classList.add('ready');
+      }
+    }, 1500);
   }
 
   window.addEventListener('resize', resizeCanvas, { passive: true });
