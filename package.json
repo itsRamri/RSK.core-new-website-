@@ -1,0 +1,14 @@
+{
+  "name": "smooth-scroll-animation",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx -y vite --open",
+    "build": "npx -y vite build",
+    "preview": "npx -y vite preview",
+    "serve": "npx -y serve ."
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}

@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSK | Ramri Shubham Kumar - Electronics & Communication Engineering</title>
+  <meta name="description" content="Portfolio of Ramri Shubham Kumar (RSK), Electronics & Communication Engineering student from Bihar (Dhamaul) specializing in Embedded Systems, IoT, PCB Design, and Communication Technologies.">
+  <meta name="keywords" content="RSK, Ramri Shubham Kumar, ECE Portfolio, Electronics Engineer, Embedded Systems, IoT, Bihar, Dhamaul, Mannat Public School">
+  <meta name="author" content="Ramri Shubham Kumar (RSK)">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="cyan">
+
+  <!-- Interactive Circuit Background Canvas -->
+  <canvas id="circuit-canvas"></canvas>
+
+  <!-- Ambient Glow Elements -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header" id="header">
+    <nav class="navbar container">
+      <a href="#hero" class="nav-brand">
+        <div class="chip-logo">
+          <span class="chip-pin pin-t1"></span>
+          <span class="chip-pin pin-t2"></span>
+          <span class="chip-core">
+            <i class="fa-solid fa-microchip"></i>
+          </span>
+          <span class="chip-pin pin-b1"></span>
+          <span class="chip-pin pin-b2"></span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">RSK<span class="highlight">.CORE</span></span>
+          <span class="brand-sub">ECE PORTFOLIO</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="#about" class="nav-link"><span class="nav-num">01.</span> About</a></li>
+        <li class="nav-item"><a href="#skills" class="nav-link"><span class="nav-num">02.</span> Skills</a></li>
+        <li class="nav-item"><a href="#projects" class="nav-link"><span class="nav-num">03.</span> Projects</a></li>
+        <li class="nav-item"><a href="#workbench" class="nav-link"><span class="nav-num">04.</span> Lab</a></li>
+        <li class="nav-item"><a href="#experience" class="nav-link"><span class="nav-num">05.</span> Education</a></li>
+        <li class="nav-item"><a href="#certifications" class="nav-link"><span class="nav-num">06.</span> Credentials</a></li>
+        <li class="nav-item"><a href="#contact" class="nav-link"><span class="nav-num">07.</span> Contact</a></li>
+      </ul>
+
+      <!-- Action Controls -->
+      <div class="nav-actions">
+        <!-- Theme Accent Switcher -->
+        <div class="theme-picker" title="Switch Accent Theme">
+          <button class="theme-btn theme-cyan active" data-color="cyan" aria-label="Cyan theme"></button>
+          <button class="theme-btn theme-purple" data-color="purple" aria-label="Purple theme"></button>
+          <button class="theme-btn theme-green" data-color="green" aria-label="Emerald theme"></button>
+          <button class="theme-btn theme-orange" data-color="orange" aria-label="Amber theme"></button>
+        </div>
+
+        <a href="https://wa.me/917766939312?text=Hello%20Ramri%20Shubham%20Kumar,%20I%20visited%20your%20portfolio!" target="_blank" class="btn btn-sm btn-glow hide-mobile">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+
+        <!-- Hamburger Toggle -->
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main>
+
+    <!-- CINEMATIC 16:9 LANDSCAPE HERO PINNED SCROLL SECTION -->
+    <section class="hero-pinned-section" id="hero">
+      <div class="hero-sticky-viewport">
+        <div class="container hero-frame-wrapper">
+          
+          <!-- 16:9 LANDSCAPE CINEMATIC FRAME -->
+          <div class="hero-16-9-frame glass-card">
+            
+            <!-- Canvas for 240 frames smooth scroll scrubbing -->
+            <canvas id="hero-16-9-canvas"></canvas>
+
+            <!-- Video Loading Placeholder -->
+            <div id="hero-video-loader" class="hero-video-loader">
+              <div class="hero-loader-ring"></div>
+              <span>BUFFERING 16:9 VIDEO FRAMES (240 FRAMES)...</span>
+            </div>
+
+            <!-- Top HUD Status Bar -->
+            <div class="hero-frame-hud-top">
+              <div class="hud-pill">
+                <span class="live-dot-green"></span>
+                <span>RSK 16:9 CINEMATIC SCROLL</span>
+              </div>
+              <div class="hud-pill">
+                <span id="hero-frame-counter">FRAME 001/240</span>
+                <span class="hud-badge">60 FPS LERP</span>
+              </div>
+            </div>
+
+            <!-- Cinematic Overlay Info -->
+            <div class="hero-cinematic-overlay">
+              <div class="overlay-badge">
+                <i class="fa-solid fa-microchip"></i>
+                <span>DIPLOMA ECE (2024–27) • BIHAR (DHAMAUL)</span>
+              </div>
+
+              <h1 class="overlay-hero-title">
+                <span class="greeting-mini">Hello World, I'm</span>
+                <span class="name-gradient">Ramri Shubham Kumar</span>
+              </h1>
+
+              <p class="overlay-hero-tagline">
+                <em>"Engineering Ideas into Intelligent Solutions."</em>
+              </p>
+
+              <div class="overlay-cta-row">
+                <a href="#projects" class="btn btn-primary btn-glow btn-sm">
+                  <i class="fa-solid fa-microchip"></i> View Projects
+                </a>
+                <button class="btn btn-secondary btn-sm" id="open-resume-btn">
+                  <i class="fa-solid fa-file-arrow-down"></i> Resume
+                </button>
+              </div>
+            </div>
+
+            <!-- Bottom Scroll Progress Bar -->
+            <div class="hero-scroll-progress-bar">
+              <div id="hero-progress-fill" class="hero-progress-fill"></div>
+            </div>
+
+            <!-- Bottom HUD Hint -->
+            <div class="hero-frame-hud-bottom">
+              <span><i class="fa-solid fa-arrow-down-long"></i> Scroll Down to play video • Scroll Up to reverse</span>
+              <span>16:9 ULTRA HD</span>
+            </div>
+
+          </div>
+
+          <!-- Bottom Metric Quick Cards -->
+          <div class="hero-bottom-metrics-row">
+            <div class="metric-pill glass-card">
+              <span class="metric-num counter" data-target="88">0</span><span class="metric-sub">.69%</span>
+              <span class="metric-text">CBSE 10th Score (2024)</span>
+            </div>
+            <div class="metric-pill glass-card">
+              <span class="metric-num counter" data-target="15">0</span><span class="metric-sub">+</span>
+              <span class="metric-text">Hardware & IoT Projects</span>
+            </div>
+            <div class="metric-pill glass-card">
+              <span class="metric-num counter" data-target="12">0</span><span class="metric-sub">+</span>
+              <span class="metric-text">Tools & Frameworks</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="section-tag"><i class="fa-solid fa-user-astronaut"></i> BIOGRAPHY</span>
+          <h2 class="section-title">About <span class="highlight">Me</span></h2>
+          <p class="section-desc">Innovating at the intersection of electronics, firmware, and next-gen communication.</p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Profile Card -->
+          <div class="about-card-profile glass-card" data-reveal>
+            <div class="profile-avatar-box">
+              <div class="avatar-glow-ring"></div>
+              <div class="avatar-inner">
+                <i class="fa-solid fa-user-gear fallback-avatar"></i>
+                <div class="avatar-scan-line"></div>
+              </div>
+              <div class="profile-badge">
+                <i class="fa-solid fa-certificate"></i> RSK • ECE
+              </div>
+            </div>
+
+            <div class="profile-info">
+              <h3 class="profile-name">Ramri Shubham Kumar</h3>
+              <p class="profile-role">Diploma in Electronics & Communication (2024-27)</p>
+              
+              <div class="profile-contacts">
+                <div class="contact-pill"><i class="fa-solid fa-location-dot"></i> Bihar (Dhamaul), India</div>
+                <div class="contact-pill"><i class="fa-solid fa-envelope"></i> rsk149652@gmail.com</div>
+                <div class="contact-pill"><i class="fa-solid fa-phone"></i> +91 7766939312</div>
+              </div>
+
+              <div class="profile-socials">
+                <a href="https://wa.me/917766939312" target="_blank" class="social-icon" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="mailto:rsk149652@gmail.com" class="social-icon" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com" target="_blank" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Description & Terminal -->
+          <div class="about-details" data-reveal>
+            <div class="glass-card bio-card">
+              <div class="bio-header">
+                <i class="fa-solid fa-terminal"></i>
+                <span>RSK_SYS_PROFILE.INIT()</span>
+              </div>
+              <div class="bio-body">
+                <p>
+                  I am <strong>Ramri Shubham Kumar (RSK)</strong>, an enthusiastic <strong>Electronics & Communication Engineering</strong> student (Session 2024–2027) based in <strong>Bihar (Dhamaul)</strong>. Having secured <strong>88.69% in CBSE Matriculation (2024) from Mannat Public School</strong>, I bring dedication, precision, and passion to hardware and firmware design.
+                </p>
+                <p>
+                  My goal is to master modern <strong>Embedded Systems, IoT devices, Robotics, and Communication Stacks</strong> to engineer smart, reliable hardware solutions for industry and community challenges.
+                </p>
+              </div>
+
+              <!-- Quick Spec Highlights -->
+              <div class="spec-grid">
+                <div class="spec-item">
+                  <div class="spec-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                  <div class="spec-content">
+                    <span class="spec-label">Diploma Program</span>
+                    <span class="spec-val">Diploma ECE (2024 - 2027)</span>
+                  </div>
+                </div>
+
+                <div class="spec-item">
+                  <div class="spec-icon"><i class="fa-solid fa-school"></i></div>
+                  <div class="spec-content">
+                    <span class="spec-label">Matriculation (CBSE)</span>
+                    <span class="spec-val">Mannat Public School (88.69%)</span>
+                  </div>
+                </div>
+
+                <div class="spec-item">
+                  <div class="spec-icon"><i class="fa-solid fa-location-dot"></i></div>
+                  <div class="spec-content">
+                    <span class="spec-label">Hometown Location</span>
+                    <span class="spec-val">Bihar (Dhamaul), India</span>
+                  </div>
+                </div>
+
+                <div class="spec-item">
+                  <div class="spec-icon"><i class="fa-solid fa-microchip"></i></div>
+                  <div class="spec-content">
+                    <span class="spec-label">Core Focus</span>
+                    <span class="spec-val">IoT, Embedded Systems, PCB</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="about-stats-grid">
+              <div class="stat-card glass-card">
+                <div class="stat-number"><span class="counter" data-target="88">0</span>.69%</div>
+                <div class="stat-label">10th CBSE Score</div>
+              </div>
+              <div class="stat-card glass-card">
+                <div class="stat-number"><span class="counter" data-target="15">0</span>+</div>
+                <div class="stat-label">Hardware Projects</div>
+              </div>
+              <div class="stat-card glass-card">
+                <div class="stat-number"><span class="counter" data-target="12">0</span>+</div>
+                <div class="stat-label">Tools & Frameworks</div>
+              </div>
+              <div class="stat-card glass-card">
+                <div class="stat-number"><span class="counter" data-target="3">0</span> Yrs</div>
+                <div class="stat-label">ECE Journey</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS SECTION -->
+    <section class="section skills-section" id="skills">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="section-tag"><i class="fa-solid fa-microchip"></i> EXPERTISE</span>
+          <h2 class="section-title">Technical <span class="highlight">Skills</span></h2>
+          <p class="section-desc">Comprehensive proficiency across hardware engineering, firmware architectures, and communication stacks.</p>
+        </div>
+
+        <div class="skills-tab-filter" data-reveal>
+          <button class="skill-tab active" data-filter="all"><i class="fa-solid fa-border-all"></i> All Skills</button>
+          <button class="skill-tab" data-filter="embedded"><i class="fa-solid fa-microchip"></i> Embedded & MCU</button>
+          <button class="skill-tab" data-filter="hardware"><i class="fa-solid fa-layer-group"></i> PCB & Hardware</button>
+          <button class="skill-tab" data-filter="comm"><i class="fa-solid fa-tower-broadcast"></i> IoT & Telecom</button>
+          <button class="skill-tab" data-filter="software"><i class="fa-solid fa-code"></i> Software & Tools</button>
+        </div>
+
+        <div class="skills-grid" id="skills-container">
+          
+          <div class="skill-card glass-card" data-category="embedded" data-reveal>
+            <div class="skill-head">
+              <div class="skill-icon-box"><i class="fa-solid fa-microchip"></i></div>
+              <div class="skill-title-box">
+                <h4>Embedded Systems</h4>
+                <span class="skill-level">ARM Cortex, RTOS, Firmware</span>
+              </div>
+              <span class="skill-percent">92%</span>
+            </div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-progress="92%"></div>
+            </div>
+            <div class="skill-tags">
+              <span>FreeRTOS</span><span>Bare-Metal</span><span>Low Power</span>
+            </div>
+          </div>
+
+          <div class="skill-card glass-card" data-category="embedded" data-reveal>
+            <div class="skill-head">
+              <div class="skill-icon-box"><i class="fa-solid fa-memory"></i></div>
+              <div class="skill-title-box">
+                <h4>Microcontrollers</h4>
+                <span class="skill-level">ESP32, STM32, Arduino, 8051</span>
+              </div>
+              <span class="skill-percent">95%</span>
+            </div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-progress="95%"></div>
+            </div>
+            <div class="skill-tags">
+              <span>ESP-IDF</span><span>STM32Cube</span><span>Arduino IDE</span>
+            </div>
+          </div>
+
+          <div class="skill-card glass-card" data-category="comm" data-reveal>
+            <div class="skill-head">
+              <div class="skill-icon-box"><i class="fa-solid fa-wifi"></i></div>
+              <div class="skill-title-box">
+                <h4>IoT Architecture</h4>
+                <span class="skill-level">MQTT, HTTP, BLE, LoRaWAN</span>
+              </div>
+              <span class="skill-percent">88%</span>
+            </div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-progress="88%"></div>
+            </div>
+            <div class="skill-tags">
+              <span>Node-RED</span><span>AWS IoT</span><span>ThingsBoard</span>
+            </div>
+          </div>
+
+          <div class="skill-card glass-card" data-category="hardware" data-reveal>
+            <div class="skill-head">
+              <div class="skill-icon-box"><i class="fa-solid fa-bezier-curve"></i></div>
+              <div class="skill-title-box">
+                <h4>PCB Design & EDA</h4>
+                <span class="skill-level">KiCad, Altium Designer, EasyEDA</span>
+              </div>
+              <span class="skill-percent">90%</span>
+            </div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-progress="90%"></div>
+            </div>
+            <div class="skill-tags">
+              <span>Multi-Layer</span><span>Schematic</span><span>Gerber</span>
+            </div>
+          </div>
+
+          <div class="skill-card glass-card" data-category="hardware" data-reveal>
+            <div class="skill-head">
+              <div class="skill-icon-box"><i class="fa-solid fa-wave-square"></i></div>
+              <div class="skill-title-box">
+                <h4>Analog & Digital Electronics</h4>
+                <span class="skill-level">Op-Amps, Filters, Logic Design</span>
+              </div>
+              <span class="skill-percent">86%</span>
+            </div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-progress="86%"></div>
+            </div>
+            <div class="skill-tags">
+              <span>Verilog</span><span>CMOS</span><span>Power Circuits</span>
+            </div>
+          </div>
+
+          <div class="skill-card glass-card" data-category="comm" data-reveal>
+            <div class="skill-head">
+              <div class="skill-icon-box"><i class="fa-solid fa-tower-cell"></i></div>
+              <div class="skill-title-box">
+                <h4>Communication Systems</h4>
+                <span class="skill-level">Modulation, Antennas, RF Systems</span>
+              </div>
+              <span class="skill-percent">84%</span>
+            </div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-progress="84%"></div>
+            </div>
+            <div class="skill-tags">
+              <span>SDR</span><span>Digital Comm</span><span>Signal Theory</span>
+            </div>
+          </div>
+
+          <div class="skill-card glass-card" data-category="software" data-reveal>
+            <div class="skill-head">
+              <div class="skill-icon-box"><i class="fa-solid fa-code"></i></div>
+              <div class="skill-title-box">
+                <h4>C / C++ (Embedded)</h4>
+                <span class="skill-level">Memory Management, Pointers, Bitwise</span>
+              </div>
+              <span class="skill-percent">94%</span>
+            </div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-progress="94%"></div>
+            </div>
+            <div class="skill-tags">
+              <span>Embedded C</span><span>C++17</span><span>Data Structures</span>
+            </div>
+          </div>
+
+          <div class="skill-card glass-card" data-category="software" data-reveal>
+            <div class="skill-head">
+              <div class="skill-icon-box"><i class="fa-brands fa-python"></i></div>
+              <div class="skill-title-box">
+                <h4>Python & MATLAB</h4>
+                <span class="skill-level">Simulink, Signal Processing, Scripting</span>
+              </div>
+              <span class="skill-percent">87%</span>
+            </div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-progress="87%"></div>
+            </div>
+            <div class="skill-tags">
+              <span>NumPy</span><span>Simulink</span><span>DSP</span>
+            </div>
+          </div>
+
+          <div class="skill-card glass-card" data-category="hardware" data-reveal>
+            <div class="skill-head">
+              <div class="skill-icon-box"><i class="fa-solid fa-sliders"></i></div>
+              <div class="skill-title-box">
+                <h4>Circuit Simulation</h4>
+                <span class="skill-level">LTspice, Proteus, Multisim</span>
+              </div>
+              <span class="skill-percent">89%</span>
+            </div>
+            <div class="skill-bar-wrapper">
+              <div class="skill-bar-fill" data-progress="89%"></div>
+            </div>
+            <div class="skill-tags">
+              <span>SPICE</span><span>Transient</span><span>AC Analysis</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="section projects-section" id="projects">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="section-tag"><i class="fa-solid fa-diagram-project"></i> SHOWCASE</span>
+          <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
+          <p class="section-desc">Hardware-software synthesized engineering solutions built by RSK.</p>
+        </div>
+
+        <div class="projects-filter-bar" data-reveal>
+          <button class="project-filter-btn active" data-category="all">All</button>
+          <button class="project-filter-btn" data-category="iot">IoT</button>
+          <button class="project-filter-btn" data-category="embedded">Embedded</button>
+          <button class="project-filter-btn" data-category="communication">Communication</button>
+          <button class="project-filter-btn" data-category="electronics">Electronics & PCB</button>
+          <button class="project-filter-btn" data-category="robotics">Robotics</button>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+
+          <div class="project-card glass-card" data-category="iot" data-reveal>
+            <div class="project-img-box">
+              <div class="project-schema-visual schema-iot">
+                <div class="schema-badge">IoT GATEWAY</div>
+                <div class="schema-flow">
+                  <span>ESP32</span><i class="fa-solid fa-arrow-right"></i><span>MQTT</span><i class="fa-solid fa-arrow-right"></i><span>AWS Cloud</span>
+                </div>
+              </div>
+              <span class="project-cat-pill">IoT & Cloud</span>
+            </div>
+
+            <div class="project-content">
+              <h3 class="project-title">Smart Home Automation & Power Monitor</h3>
+              <p class="project-desc">
+                IoT-enabled automation hub featuring current sensing, voltage monitoring, and cloud-synced bidirectional device control with sub-50ms relay latency.
+              </p>
+
+              <div class="project-tech-stack">
+                <span>ESP32</span>
+                <span>MQTT</span>
+                <span>Node-RED</span>
+                <span>C++</span>
+                <span>ACS712</span>
+              </div>
+
+              <div class="project-footer-actions">
+                <a href="https://github.com" target="_blank" class="btn btn-sm btn-outline">
+                  <i class="fa-brands fa-github"></i> Code
+                </a>
+                <button class="btn btn-sm btn-primary open-modal-btn" data-project="p1">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card glass-card" data-category="embedded" data-reveal>
+            <div class="project-img-box">
+              <div class="project-schema-visual schema-embedded">
+                <div class="schema-badge">INDUSTRIAL MONITOR</div>
+                <div class="schema-flow">
+                  <span>STM32</span><i class="fa-solid fa-arrow-right"></i><span>LoRa 868MHz</span><i class="fa-solid fa-arrow-right"></i><span>Base Station</span>
+                </div>
+              </div>
+              <span class="project-cat-pill">Embedded & LoRa</span>
+            </div>
+
+            <div class="project-content">
+              <h3 class="project-title">LoRa-Based Long-Range Remote Telemetry</h3>
+              <p class="project-desc">
+                Ultra-low-power industrial sensor node transmitting telemetry data over 5+ km using SX1278 LoRa transceivers with deep-sleep power budgeting.
+              </p>
+
+              <div class="project-tech-stack">
+                <span>STM32F4</span>
+                <span>SX1278 LoRa</span>
+                <span>FreeRTOS</span>
+                <span>SPI</span>
+                <span>Embedded C</span>
+              </div>
+
+              <div class="project-footer-actions">
+                <a href="https://github.com" target="_blank" class="btn btn-sm btn-outline">
+                  <i class="fa-brands fa-github"></i> Code
+                </a>
+                <button class="btn btn-sm btn-primary open-modal-btn" data-project="p2">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card glass-card" data-category="robotics" data-reveal>
+            <div class="project-img-box">
+              <div class="project-schema-visual schema-robotics">
+                <div class="schema-badge">ROBOTICS</div>
+                <div class="schema-flow">
+                  <span>Sensors</span><i class="fa-solid fa-arrow-right"></i><span>PID Loop</span><i class="fa-solid fa-arrow-right"></i><span>L298N Motor</span>
+                </div>
+              </div>
+              <span class="project-cat-pill">Robotics</span>
+            </div>
+
+            <div class="project-content">
+              <h3 class="project-title">Autonomous Obstacle Avoiding LiDAR Rover</h3>
+              <p class="project-desc">
+                4-wheel drive autonomous rover featuring ultrasonic distance mapping, servo panning, and reactive navigation algorithms with PWM speed control.
+              </p>
+
+              <div class="project-tech-stack">
+                <span>Arduino Mega</span>
+                <span>HC-SR04</span>
+                <span>PWM</span>
+                <span>L298N</span>
+                <span>C++</span>
+              </div>
+
+              <div class="project-footer-actions">
+                <a href="https://github.com" target="_blank" class="btn btn-sm btn-outline">
+                  <i class="fa-brands fa-github"></i> Code
+                </a>
+                <button class="btn btn-sm btn-primary open-modal-btn" data-project="p3">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card glass-card" data-category="communication" data-reveal>
+            <div class="project-img-box">
+              <div class="project-schema-visual schema-comm">
+                <div class="schema-badge">SDR / DSP</div>
+                <div class="schema-flow">
+                  <span>QPSK Mod</span><i class="fa-solid fa-arrow-right"></i><span>AWGN Channel</span><i class="fa-solid fa-arrow-right"></i><span>BER Analyzer</span>
+                </div>
+              </div>
+              <span class="project-cat-pill">Telecom & DSP</span>
+            </div>
+
+            <div class="project-content">
+              <h3 class="project-title">SDR Digital Communication & QPSK Modem</h3>
+              <p class="project-desc">
+                Software-defined radio transceiver pipeline supporting QPSK/16-QAM modulation, matched filtering, carrier recovery, and BER benchmarking.
+              </p>
+
+              <div class="project-tech-stack">
+                <span>MATLAB</span>
+                <span>Simulink</span>
+                <span>GNU Radio</span>
+                <span>DSP</span>
+                <span>QPSK</span>
+              </div>
+
+              <div class="project-footer-actions">
+                <a href="https://github.com" target="_blank" class="btn btn-sm btn-outline">
+                  <i class="fa-brands fa-github"></i> Code
+                </a>
+                <button class="btn btn-sm btn-primary open-modal-btn" data-project="p4">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card glass-card" data-category="electronics" data-reveal>
+            <div class="project-img-box">
+              <div class="project-schema-visual schema-pcb">
+                <div class="schema-badge">CUSTOM HARDWARE</div>
+                <div class="schema-flow">
+                  <span>Schematic</span><i class="fa-solid fa-arrow-right"></i><span>4-Layer PCB</span><i class="fa-solid fa-arrow-right"></i><span>SMD Assembly</span>
+                </div>
+              </div>
+              <span class="project-cat-pill">PCB Design</span>
+            </div>
+
+            <div class="project-content">
+              <h3 class="project-title">4-Layer High-Speed ESP32 Carrier Board</h3>
+              <p class="project-desc">
+                Custom 4-layer PCB in KiCad with dedicated power/ground planes, impedance-matched RF antenna trace, USB-C Power Delivery, and onboard battery charging.
+              </p>
+
+              <div class="project-tech-stack">
+                <span>KiCad</span>
+                <span>Altium</span>
+                <span>SMD 0603</span>
+                <span>LDO Regulation</span>
+                <span>DRC</span>
+              </div>
+
+              <div class="project-footer-actions">
+                <a href="https://github.com" target="_blank" class="btn btn-sm btn-outline">
+                  <i class="fa-brands fa-github"></i> Code
+                </a>
+                <button class="btn btn-sm btn-primary open-modal-btn" data-project="p5">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card glass-card" data-category="iot" data-reveal>
+            <div class="project-img-box">
+              <div class="project-schema-visual schema-env">
+                <div class="schema-badge">AIR QUALITY</div>
+                <div class="schema-flow">
+                  <span>BME680</span><i class="fa-solid fa-arrow-right"></i><span>AQI Alg</span><i class="fa-solid fa-arrow-right"></i><span>OLED / Web</span>
+                </div>
+              </div>
+              <span class="project-cat-pill">IoT & Sensors</span>
+            </div>
+
+            <div class="project-content">
+              <h3 class="project-title">Smart Environmental & Air Quality Station</h3>
+              <p class="project-desc">
+                Autonomous solar-powered AQI weather station logging particulate matter (PM2.5/PM10), VOCs, temperature, and humidity to an interactive dashboard.
+              </p>
+
+              <div class="project-tech-stack">
+                <span>BME680</span>
+                <span>PMS5003</span>
+                <span>ESP8266</span>
+                <span>Firebase</span>
+                <span>OLED I2C</span>
+              </div>
+
+              <div class="project-footer-actions">
+                <a href="https://github.com" target="_blank" class="btn btn-sm btn-outline">
+                  <i class="fa-brands fa-github"></i> Code
+                </a>
+                <button class="btn btn-sm btn-primary open-modal-btn" data-project="p6">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ELECTRONICS LAB WORKBENCH SECTION -->
+    <section class="section workbench-section" id="workbench">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="section-tag"><i class="fa-solid fa-flask-vial"></i> HARDWARE SUITE</span>
+          <h2 class="section-title">My Electronics <span class="highlight">Lab</span></h2>
+          <p class="section-desc">Interactive workbench featuring the instrumentation and developer tools RSK uses daily.</p>
+        </div>
+
+        <div class="interactive-scope-station glass-card" data-reveal>
+          <div class="scope-station-header">
+            <div class="scope-station-title">
+              <span class="scope-live-dot"></span>
+              <h3>Digital Storage Oscilloscope & Signal Generator</h3>
+            </div>
+            <div class="scope-station-meta">
+              <span class="tag">Interactive Live Simulator</span>
+            </div>
+          </div>
+
+          <div class="scope-station-body">
+            <div class="scope-display-frame">
+              <canvas id="interactive-oscilloscope" width="600" height="220"></canvas>
+              <div class="scope-overlay-stats">
+                <span id="scope-stat-freq">Freq: 1.00 kHz</span>
+                <span id="scope-stat-vpp">Vpp: 3.30 V</span>
+                <span id="scope-stat-wave">Type: SINE</span>
+              </div>
+            </div>
+
+            <div class="scope-controls">
+              <div class="control-group">
+                <label>Waveform Type</label>
+                <div class="wave-btn-group">
+                  <button class="wave-btn active" data-wave="sine"><i class="fa-solid fa-wave-square"></i> Sine</button>
+                  <button class="wave-btn" data-wave="square"><i class="fa-solid fa-grip-lines"></i> Square</button>
+                  <button class="wave-btn" data-wave="triangle"><i class="fa-solid fa-play fa-rotate-270"></i> Triangle</button>
+                  <button class="wave-btn" data-wave="noise"><i class="fa-solid fa-barcode"></i> Noise</button>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label for="freq-slider">Frequency (<span id="freq-val">1.0</span> kHz)</label>
+                <input type="range" id="freq-slider" min="0.2" max="5.0" step="0.1" value="1.0" class="neon-slider">
+              </div>
+
+              <div class="control-group">
+                <label for="amp-slider">Amplitude (<span id="amp-val">3.3</span> V)</label>
+                <input type="range" id="amp-slider" min="0.5" max="5.0" step="0.1" value="3.3" class="neon-slider">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lab-tools-grid">
+
+          <div class="lab-tool-card glass-card" data-reveal>
+            <div class="lab-tool-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <h4>Digital Oscilloscope</h4>
+            <p>100MHz Dual-Channel DSO for protocol decoding & waveform debugging.</p>
+          </div>
+
+          <div class="lab-tool-card glass-card" data-reveal>
+            <div class="lab-tool-icon"><i class="fa-solid fa-gauge"></i></div>
+            <h4>Digital Multimeter</h4>
+            <p>True-RMS DMM with micro-amp current & capacitor testing capabilities.</p>
+          </div>
+
+          <div class="lab-tool-card glass-card" data-reveal>
+            <div class="lab-tool-icon"><i class="fa-solid fa-temperature-arrow-up"></i></div>
+            <h4>SMD Soldering Station</h4>
+            <p>Temperature-controlled soldering and hot-air rework station for 0402 SMD chips.</p>
+          </div>
+
+          <div class="lab-tool-card glass-card" data-reveal>
+            <div class="lab-tool-icon"><i class="fa-solid fa-microchip"></i></div>
+            <h4>Logic Analyzer</h4>
+            <p>8-Channel 24MHz USB Logic Analyzer for SPI, I2C, UART protocol sniffing.</p>
+          </div>
+
+          <div class="lab-tool-card glass-card" data-reveal>
+            <div class="lab-tool-icon"><i class="fa-solid fa-plug"></i></div>
+            <h4>Benchtop Power Supply</h4>
+            <p>0-30V 5A Adjustable DC linear power supply with constant current limiting.</p>
+          </div>
+
+          <div class="lab-tool-card glass-card" data-reveal>
+            <div class="lab-tool-icon"><i class="fa-solid fa-layer-group"></i></div>
+            <h4>Prototyping & Sensor Suite</h4>
+            <p>Comprehensive kit of IMUs, environmental sensors, breadboards & breakout modules.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE: EDUCATION & ACADEMICS -->
+    <section class="section timeline-section" id="experience">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="section-tag"><i class="fa-solid fa-graduation-cap"></i> ACADEMIC PATH</span>
+          <h2 class="section-title">Education & <span class="highlight">Qualifications</span></h2>
+          <p class="section-desc">Academic excellence and technical journey of Ramri Shubham Kumar.</p>
+        </div>
+
+        <div class="timeline-wrapper">
+          <div class="timeline-line"></div>
+
+          <div class="timeline-item timeline-left" data-reveal>
+            <div class="timeline-dot"><i class="fa-solid fa-user-graduate"></i></div>
+            <div class="timeline-card glass-card">
+              <div class="timeline-meta">
+                <span class="timeline-year">2024 - 2027 (Session)</span>
+                <span class="timeline-tag">CURRENT ENROLLMENT</span>
+              </div>
+              <h3 class="timeline-title">Diploma in Electronics & Communication Engineering</h3>
+              <h4 class="timeline-subtitle">State Board of Technical Education / Polytechnic</h4>
+              <p class="timeline-desc">
+                Core coursework focusing on Digital Electronics, Analog Circuits, Microprocessors, Microcontrollers, Communication Networks, Signal Processing, and Electronic Devices & Circuits.
+              </p>
+              <div class="timeline-badges">
+                <span>Digital Electronics</span><span>Microprocessors</span><span>Analog Circuits</span><span>Signals & Systems</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item timeline-right" data-reveal>
+            <div class="timeline-dot"><i class="fa-solid fa-school"></i></div>
+            <div class="timeline-card glass-card">
+              <div class="timeline-meta">
+                <span class="timeline-year">Passing Year: 2024</span>
+                <span class="timeline-tag">CBSE BOARD</span>
+              </div>
+              <h3 class="timeline-title">Secondary School Examination (10th Metric)</h3>
+              <h4 class="timeline-subtitle">Mannat Public School • CBSE Board</h4>
+              <p class="timeline-desc">
+                Graduated with an outstanding academic record of <strong>88.69% Percentage</strong>. Excelled in Mathematics, Science (Physics & Chemistry), and Computer Fundamentals.
+              </p>
+              <div class="timeline-badges">
+                <span style="color: var(--primary); font-weight: 700;">Score: 88.69%</span><span>CBSE Board</span><span>Science & Math Distinction</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item timeline-left" data-reveal>
+            <div class="timeline-dot"><i class="fa-solid fa-chalkboard-user"></i></div>
+            <div class="timeline-card glass-card">
+              <div class="timeline-meta">
+                <span class="timeline-year">2024 - Present</span>
+                <span class="timeline-tag">PRACTICAL TRAINING</span>
+              </div>
+              <h3 class="timeline-title">Embedded Systems & PCB Design Prototyping</h3>
+              <h4 class="timeline-subtitle">Self-Directed R&D & Technical Workshops</h4>
+              <p class="timeline-desc">
+                Hands-on practical development with ESP32, Arduino, STM32 microcontrollers, sensor interfacing, and multi-layer schematic layout using KiCad and EasyEDA.
+              </p>
+              <div class="timeline-badges">
+                <span>KiCad</span><span>ESP32</span><span>STM32</span><span>IoT Sensors</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS SECTION -->
+    <section class="section certs-section" id="certifications">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="section-tag"><i class="fa-solid fa-certificate"></i> VERIFIED CREDENTIALS</span>
+          <h2 class="section-title">Certifications & <span class="highlight">Accreditations</span></h2>
+          <p class="section-desc">Certified engineering proficiencies and industry-recognized credentials.</p>
+        </div>
+
+        <div class="certs-grid">
+
+          <div class="cert-card glass-card" data-reveal>
+            <div class="cert-icon-box"><i class="fa-solid fa-microchip"></i></div>
+            <div class="cert-info">
+              <span class="cert-issuer">Texas Instruments / NPTEL</span>
+              <h3 class="cert-title">Embedded Systems Design with ARM Cortex</h3>
+              <p class="cert-meta"><i class="fa-regular fa-calendar"></i> Issued: 2024 • ID: TI-EMB-89241</p>
+            </div>
+            <a href="#certifications" class="cert-verify-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+
+          <div class="cert-card glass-card" data-reveal>
+            <div class="cert-icon-box"><i class="fa-solid fa-wifi"></i></div>
+            <div class="cert-info">
+              <span class="cert-issuer">Cisco Networking Academy</span>
+              <h3 class="cert-title">Internet of Things (IoT) Fundamentals & Security</h3>
+              <p class="cert-meta"><i class="fa-regular fa-calendar"></i> Issued: 2024 • ID: CISCO-IOT-55102</p>
+            </div>
+            <a href="#certifications" class="cert-verify-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+
+          <div class="cert-card glass-card" data-reveal>
+            <div class="cert-icon-box"><i class="fa-solid fa-code"></i></div>
+            <div class="cert-info">
+              <span class="cert-issuer">Coursera / UC Boulder</span>
+              <h3 class="cert-title">Embedded Software & Hardware Architecture (C/C++)</h3>
+              <p class="cert-meta"><i class="fa-regular fa-calendar"></i> Issued: 2024 • ID: COURS-ARCH-7731</p>
+            </div>
+            <a href="#certifications" class="cert-verify-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+
+          <div class="cert-card glass-card" data-reveal>
+            <div class="cert-icon-box"><i class="fa-solid fa-layer-group"></i></div>
+            <div class="cert-info">
+              <span class="cert-issuer">Autodesk / Altium</span>
+              <h3 class="cert-title">Professional PCB Design & Schematic Capture</h3>
+              <p class="cert-meta"><i class="fa-regular fa-calendar"></i> Issued: 2024 • ID: ALT-PCB-99120</p>
+            </div>
+            <a href="#certifications" class="cert-verify-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS SECTION -->
+    <section class="section achievements-section" id="achievements">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="section-tag"><i class="fa-solid fa-trophy"></i> MILESTONES</span>
+          <h2 class="section-title">Honors & <span class="highlight">Achievements</span></h2>
+          <p class="section-desc">Academic excellence and technical accomplishments.</p>
+        </div>
+
+        <div class="achievements-grid">
+          
+          <div class="achievement-card glass-card" data-reveal>
+            <div class="trophy-badge"><i class="fa-solid fa-award"></i> Academic Honor</div>
+            <h3>88.69% in CBSE Matriculation (2024)</h3>
+            <p>Achieved top academic distinction at Mannat Public School with an outstanding aggregate of 88.69% in the CBSE board examinations.</p>
+          </div>
+
+          <div class="achievement-card glass-card" data-reveal>
+            <div class="trophy-badge badge-silver"><i class="fa-solid fa-trophy"></i> 1st Position</div>
+            <h3>State ECE Electronics & Robotics Contest</h3>
+            <p>Designed a high-speed line-following and obstacle-sensing robotic vehicle with custom sensor polling and closed-loop motor control.</p>
+          </div>
+
+          <div class="achievement-card glass-card" data-reveal>
+            <div class="trophy-badge badge-lead"><i class="fa-solid fa-star"></i> ECE Student Lead</div>
+            <h3>Hardware & IoT Student Representative</h3>
+            <p>Active organizer for embedded systems, Arduino, and circuit simulation workshops for fellow diploma students.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="section-tag"><i class="fa-solid fa-satellite-dish"></i> DIRECT TRANSMISSION</span>
+          <h2 class="section-title">Get in <span class="highlight">Touch</span></h2>
+          <p class="section-desc">Have an engineering opportunity, project idea, or discussion? Send a message directly to <strong>rsk149652@gmail.com</strong>.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Contact Info Cards -->
+          <div class="contact-cards-column" data-reveal>
+            <div class="contact-info-card glass-card">
+              <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="contact-details">
+                <span class="contact-label">Direct Email</span>
+                <a href="mailto:rsk149652@gmail.com" class="contact-value">rsk149652@gmail.com</a>
+              </div>
+              <button class="copy-btn" data-copy="rsk149652@gmail.com" title="Copy Email"><i class="fa-regular fa-copy"></i></button>
+            </div>
+
+            <div class="contact-info-card glass-card">
+              <div class="contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
+              <div class="contact-details">
+                <span class="contact-label">WhatsApp No.</span>
+                <a href="https://wa.me/917766939312" target="_blank" class="contact-value">+91 7766939312</a>
+              </div>
+              <button class="copy-btn" data-copy="7766939312" title="Copy Number"><i class="fa-regular fa-copy"></i></button>
+            </div>
+
+            <div class="contact-info-card glass-card">
+              <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="contact-details">
+                <span class="contact-label">Location</span>
+                <span class="contact-value">Bihar (Dhamaul), India</span>
+              </div>
+            </div>
+
+            <div class="contact-info-card glass-card">
+              <div class="contact-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+              <div class="contact-details">
+                <span class="contact-label">LinkedIn Profile</span>
+                <a href="https://linkedin.com" target="_blank" class="contact-value">linkedin.com/in/rsk-ece</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form with EmailJS Integration (Service ID: service_tic5x78) -->
+          <div class="contact-form-column glass-card" data-reveal>
+            <form id="contact-form" class="contact-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name"><i class="fa-solid fa-user highlight"></i> Your Name</label>
+                  <div class="input-wrapper">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="call"><i class="fa-solid fa-phone highlight"></i> Contact / WhatsApp No. (Call)</label>
+                  <div class="input-wrapper">
+                    <i class="fa-solid fa-phone"></i>
+                    <input type="tel" id="call" name="call" placeholder="e.g. +91 7766939312" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="email"><i class="fa-solid fa-envelope highlight"></i> Your Email Address</label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-at"></i>
+                  <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="message"><i class="fa-solid fa-message highlight"></i> Message Payload</label>
+                <div class="input-wrapper textarea-wrapper">
+                  <i class="fa-solid fa-message"></i>
+                  <textarea id="message" name="message" rows="5" placeholder="Write your message here. It will be dispatched directly to Ramri Shubham Kumar..." required></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-glow btn-block" id="form-submit-btn">
+                <i class="fa-solid fa-paper-plane"></i> Send Message (EmailJS)
+              </button>
+
+              <div class="form-status" id="form-status"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <div class="chip-logo">
+          <span class="chip-core"><i class="fa-solid fa-microchip"></i></span>
+        </div>
+        <div class="footer-brand-text">
+          <span class="footer-title">Ramri Shubham Kumar (RSK)</span>
+          <span class="footer-sub">Diploma in Electronics & Communication Engineering • Bihar (Dhamaul)</span>
+        </div>
+      </div>
+
+      <p class="footer-quote">
+        <em>"Designed & Built with passion for Electronics, Microcontrollers & Embedded Systems."</em>
+      </p>
+
+      <div class="footer-socials">
+        <a href="https://wa.me/917766939312" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="mailto:rsk149652@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 RSK (Ramri Shubham Kumar). All rights reserved. • Bihar (Dhamaul), India</p>
+        <a href="#hero" class="back-to-top" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i> Top</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PROJECT DETAILS MODAL -->
+  <div class="modal" id="project-modal" aria-hidden="true">
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal-container glass-card">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">&times;</button>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- RESUME PREVIEW MODAL -->
+  <div class="modal" id="resume-modal" aria-hidden="true">
+    <div class="modal-overlay" id="resume-overlay"></div>
+    <div class="modal-container glass-card resume-modal-container">
+      <button class="modal-close-btn" id="resume-close-btn" aria-label="Close modal">&times;</button>
+      <div class="modal-body">
+        <div class="resume-header">
+          <h2><i class="fa-solid fa-file-lines"></i> Engineering Resume</h2>
+          <p>Ramri Shubham Kumar (RSK)</p>
+        </div>
+        <div class="resume-preview-sheet">
+          <div class="resume-sheet-header">
+            <h3>Ramri Shubham Kumar</h3>
+            <p>Diploma in ECE (2024-27) • rsk149652@gmail.com • +91 7766939312 • Bihar (Dhamaul)</p>
+          </div>
+          <hr class="resume-divider">
+          <div class="resume-section-item">
+            <h4><i class="fa-solid fa-graduation-cap"></i> Education</h4>
+            <p>• <strong>Diploma in Electronics & Communication Engineering</strong> (Session: 2024 - 2027)<br>
+            • <strong>10th Matriculation (CBSE Board)</strong> — Mannat Public School (2024) | Score: <strong>88.69%</strong></p>
+          </div>
+          <div class="resume-section-item">
+            <h4><i class="fa-solid fa-microchip"></i> Core Technical Skills</h4>
+            <p>Embedded Systems, Microcontrollers (ESP32, STM32, Arduino), IoT Protocols (MQTT, HTTP, BLE), PCB Design (KiCad, Altium), C/C++, Python, MATLAB, Digital & Analog Electronics.</p>
+          </div>
+          <div class="resume-section-item">
+            <h4><i class="fa-solid fa-diagram-project"></i> Key Projects</h4>
+            <p>• Smart IoT Home Automation & Energy Gateway (ESP32, MQTT)<br>• LoRa Long-Range Remote Industrial Telemetry (STM32, SX1278)<br>• Autonomous Obstacle Avoiding Rover (Arduino Mega, LiDAR)</p>
+          </div>
+        </div>
+        <div class="resume-actions">
+          <button class="btn btn-primary btn-glow" id="download-print-btn">
+            <i class="fa-solid fa-download"></i> Save / Print PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- EmailJS Official Browser SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- Modular Scripts -->
+  <script src="js/circuit.js"></script>
+  <script src="js/hero-animation.js"></script>
+  <script src="js/oscilloscope.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/contact.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
