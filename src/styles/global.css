@@ -1999,9 +1999,14 @@ header.header {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group input[type="email"],
+.form-group input[type="text"],
+.form-group input[type="tel"] {
   width: 100%;
   background: rgba(6, 11, 24, 0.85) !important;
+  background-image: none !important;
+  background-repeat: no-repeat !important;
   border: 1px solid rgba(0, 240, 255, 0.2) !important;
   border-radius: var(--radius-sm);
   padding: 0.85rem 1.1rem !important;
@@ -2011,6 +2016,17 @@ header.header {
   transition: var(--transition-fast);
   outline: none;
   box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form-group input::before,
+.form-group input::after,
+.form-group textarea::before,
+.form-group textarea::after {
+  content: none !important;
+  display: none !important;
 }
 
 .form-group textarea {
@@ -2024,25 +2040,12 @@ header.header {
   opacity: 0.85;
 }
 
-.textarea-wrapper {
-  align-items: flex-start;
-}
-
-.textarea-wrapper i {
-  top: 1.1rem;
-}
-
-.textarea-wrapper textarea {
-  resize: vertical;
-}
-
-.input-wrapper input:focus,
-.input-wrapper textarea:focus,
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: var(--primary) !important;
   box-shadow: 0 0 16px var(--primary-glow), inset 0 2px 4px rgba(0, 0, 0, 0.5) !important;
   background: rgba(8, 15, 32, 0.95) !important;
+  background-image: none !important;
 }
 
 /* Fix browser auto-fill white background */
