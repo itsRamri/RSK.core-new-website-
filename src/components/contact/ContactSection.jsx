@@ -23,12 +23,37 @@ export const ContactSection = ({ onShowToast }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleCopy = (text, fieldName) => {
-    navigator.clipboard.writeText(text).then(() => {
-      onShowToast(`Copied to clipboard: ${text}`, 'success');
+  const fallbackCopy = (text, fieldName) => {
+    try {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.opacity = '0';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      if (onShowToast) onShowToast(`Copied to clipboard: ${text}`, 'success');
       setCopiedField(fieldName);
       setTimeout(() => setCopiedField(null), 2000);
-    });
+    } catch (e) {
+      if (onShowToast) onShowToast(`Contact: ${text}`, 'info');
+    }
+  };
+
+  const handleCopy = (text, fieldName) => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        if (onShowToast) onShowToast(`Copied to clipboard: ${text}`, 'success');
+        setCopiedField(fieldName);
+        setTimeout(() => setCopiedField(null), 2000);
+      }).catch(() => {
+        fallbackCopy(text, fieldName);
+      });
+    } else {
+      fallbackCopy(text, fieldName);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -36,7 +61,17 @@ export const ContactSection = ({ onShowToast }) => {
     const { name, call, email, message } = formData;
 
     if (!name.trim() || !call.trim() || !email.trim() || !message.trim()) {
-      onShowToast('Please fill all required fields (Name, Call, Email, Message).', 'error');
+      const errMsg = 'Please fill all required fields (Name, Call, Email, Message).';
+      if (onShowToast) onShowToast(errMsg, 'error');
+      setFormStatus({ message: `⚠ ${errMsg}`, type: 'error' });
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) {
+      const errMsg = 'Please enter a valid email address (e.g. name@example.com).';
+      if (onShowToast) onShowToast(errMsg, 'error');
+      setFormStatus({ message: `⚠ ${errMsg}`, type: 'error' });
       return;
     }
 
@@ -78,7 +113,7 @@ export const ContactSection = ({ onShowToast }) => {
           message: '✓ Message Sent Successfully via EmailJS! I will reach out soon.',
           type: 'success'
         });
-        onShowToast(`Thank you ${name}! Your message & contact info has been sent.`, 'success');
+        if (onShowToast) onShowToast(`Thank you ${name}! Your message & contact info has been sent.`, 'success');
         setTimeout(() => setFormStatus({ message: '', type: '' }), 7000);
       } else {
         throw new Error(`EmailJS status: ${response.status}`);
@@ -90,10 +125,10 @@ export const ContactSection = ({ onShowToast }) => {
         '_blank'
       );
       setFormStatus({
-        message: '✓ Opening email client for direct transmission.',
+        message: '✓ Opening direct mail client (rsk149652@gmail.com) to complete transmission.',
         type: 'success'
       });
-      onShowToast('Opening default mail client to dispatch message...', 'success');
+      if (onShowToast) onShowToast('Opening default mail client to dispatch message...', 'success');
     } finally {
       setIsSubmitting(false);
     }
@@ -264,7 +299,7 @@ export const ContactSection = ({ onShowToast }) => {
               </button>
 
               {formStatus.message && (
-                <div className={`form-status ${formStatus.type === 'success' ? 'success' : ''}`}>
+                <div className={`form-status ${formStatus.type || ''}`}>
                   {formStatus.message}
                 </div>
               )}
