@@ -66,7 +66,11 @@ export const AboutSection = () => {
             <div className="profile-avatar-box">
               <div className="avatar-glow-ring"></div>
               <div className="avatar-inner">
-                <i className="fa-solid fa-user-gear fallback-avatar"></i>
+                <img
+                  src="/ezgif-476a1f2348609364-jpg/shubham%20profile.jpeg"
+                  alt="Ramri Shubham Kumar"
+                  className="profile-avatar-img"
+                />
                 <div className="avatar-scan-line"></div>
               </div>
               <div className="profile-badge">

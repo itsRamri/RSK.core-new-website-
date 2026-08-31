@@ -175,14 +175,20 @@ export const HeroVideoCanvas = () => {
         drawW = canvasH * imgRatio;
       }
 
-      // Responsive zoom calculations
-      const isMobile = window.innerWidth <= 768;
-      const zoom = isMobile ? 1.08 : 1.04;
+      // Exact 1.0x scale to preserve full hair and avoid cutting off top headroom
+      const zoom = 1.0;
 
       const finalW = drawW * zoom;
       const finalH = drawH * zoom;
       const offsetX = (canvasW - finalW) / 2;
-      const offsetY = (canvasH - finalH) / 2;
+
+      // Safe vertical alignment: preserve head and hair at the top
+      let offsetY;
+      if (finalH > canvasH) {
+        offsetY = 0; // Top-aligned so hair is never clipped
+      } else {
+        offsetY = (canvasH - finalH) / 2;
+      }
 
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';

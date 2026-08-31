@@ -30,13 +30,13 @@ export const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { num: '01.', label: 'About', href: '#about', id: 'about' },
-    { num: '02.', label: 'Skills', href: '#skills', id: 'skills' },
-    { num: '03.', label: 'Projects', href: '#projects', id: 'projects' },
-    { num: '04.', label: 'Lab', href: '#workbench', id: 'workbench' },
-    { num: '05.', label: 'Education', href: '#experience', id: 'experience' },
-    { num: '06.', label: 'Credentials', href: '#certifications', id: 'certifications' },
-    { num: '07.', label: 'Contact', href: '#contact', id: 'contact' },
+    { label: 'About', href: '#about', id: 'about' },
+    { label: 'Skills', href: '#skills', id: 'skills' },
+    { label: 'Projects', href: '#projects', id: 'projects' },
+    { label: 'Lab', href: '#workbench', id: 'workbench' },
+    { label: 'Education', href: '#experience', id: 'experience' },
+    { label: 'Credentials', href: '#certifications', id: 'certifications' },
+    { label: 'Contact', href: '#contact', id: 'contact' },
   ];
 
   return (
@@ -68,7 +68,7 @@ export const Navbar = () => {
                 className={`nav-link ${activeSection === link.id ? 'active' : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <span className="nav-num">{link.num}</span> {link.label}
+                {link.label}
               </a>
             </li>
           ))}
