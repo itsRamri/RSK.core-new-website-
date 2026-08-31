@@ -165,15 +165,15 @@ export const ContactSection = ({ onShowToast }) => {
             <div className="glass-card direct-chat-card">
               <div className="chat-card-head">
                 <span className="live-dot-green"></span>
-                <span>RAPID TRANSMISSION</span>
+                <span className="chat-signal-tag">RAPID TRANSMISSION</span>
               </div>
-              <h4>Direct WhatsApp Instant Connect</h4>
-              <p>Prefer real-time technical discussions or fast project consultations?</p>
+              <h4 className="chat-card-title">Direct WhatsApp Instant Connect</h4>
+              <p className="chat-card-desc">Prefer real-time technical discussions or fast project consultations?</p>
               <a
                 href="https://wa.me/917766939312?text=Hi%20Ramri%20Shubham%20Kumar,%20I%20am%20contacting%20you%20from%20your%20ECE%20Portfolio."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary btn-glow btn-sm"
+                className="btn btn-whatsapp-direct btn-glow"
               >
                 <i className="fa-brands fa-whatsapp"></i> Chat on WhatsApp
               </a>
@@ -195,55 +195,67 @@ export const ContactSection = ({ onShowToast }) => {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="name"><i className="fa-solid fa-user"></i> Your Name *</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    placeholder="e.g. Saurav Sharma"
-                    required
-                  />
+                  <div className="input-wrapper">
+                    <i className="fa-solid fa-user-pen"></i>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="e.g. Saurav Sharma"
+                      required
+                    />
+                  </div>
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="call"><i className="fa-solid fa-phone"></i> Call / Phone No *</label>
-                  <input
-                    type="tel"
-                    id="call"
-                    name="call"
-                    value={formData.call}
-                    onChange={handleInputChange}
-                    placeholder="e.g. +91 9876543210"
-                    required
-                  />
+                  <div className="input-wrapper">
+                    <i className="fa-solid fa-phone-volume"></i>
+                    <input
+                      type="tel"
+                      id="call"
+                      name="call"
+                      value={formData.call}
+                      onChange={handleInputChange}
+                      placeholder="e.g. +91 9876543210"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
 
               <div className="form-group">
                 <label htmlFor="email"><i className="fa-solid fa-envelope"></i> Email Address *</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="e.g. name@example.com"
-                  required
-                />
+                <div className="input-wrapper">
+                  <i className="fa-solid fa-envelope-open-text"></i>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="e.g. name@example.com"
+                    required
+                  />
+                </div>
               </div>
 
               <div className="form-group">
                 <label htmlFor="message"><i className="fa-solid fa-message"></i> Message / Technical Inquiry *</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  placeholder="Describe your project, question, or opportunity..."
-                  required
-                ></textarea>
+                <div className="input-wrapper textarea-wrapper">
+                  <i className="fa-solid fa-comment-dots"></i>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Describe your project, question, or opportunity..."
+                    required
+                  ></textarea>
+                </div>
               </div>
 
               <button

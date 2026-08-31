@@ -110,12 +110,15 @@ export const HeroVideoCanvas = () => {
 
     const resizeCanvas = () => {
       const rect = canvas.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
       const width = rect.width || canvas.parentElement?.clientWidth || 1280;
       const height = rect.height || canvas.parentElement?.clientHeight || 720;
 
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
+
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
 
       lastRenderedFrame = -1;
       if (loadedFrames.size > 0) {
@@ -172,17 +175,17 @@ export const HeroVideoCanvas = () => {
         drawW = canvasH * imgRatio;
       }
 
-      // Responsive zoom calculations:
-      // Mobile (<=768px): ~1.08x - 1.15x zoom (1.10x)
-      // Desktop (>768px): ~1.03x - 1.08x zoom (1.05x)
+      // Responsive zoom calculations
       const isMobile = window.innerWidth <= 768;
-      const zoom = isMobile ? 1.10 : 1.05;
+      const zoom = isMobile ? 1.08 : 1.04;
 
       const finalW = drawW * zoom;
       const finalH = drawH * zoom;
       const offsetX = (canvasW - finalW) / 2;
       const offsetY = (canvasH - finalH) / 2;
 
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
       ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, canvasW, canvasH);
       ctx.drawImage(img, offsetX, offsetY, finalW, finalH);
