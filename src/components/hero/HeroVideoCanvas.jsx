@@ -20,8 +20,9 @@ export const HeroVideoCanvas = () => {
     const loadingFrames = new Set();
     const loadedChunks = new Set();
 
-    let currentFrame = 0;
-    let targetFrame = 0;
+    // Start on front-facing portrait frame (Frame 240)
+    let currentFrame = TOTAL_FRAMES - 1;
+    let targetFrame = TOTAL_FRAMES - 1;
     let lastRenderedFrame = -1;
     let animId = null;
 
@@ -64,7 +65,7 @@ export const HeroVideoCanvas = () => {
         loadedFrames.add(i);
         loadingFrames.delete(i);
 
-        if (i === 0 || lastRenderedFrame === -1) {
+        if (i === (TOTAL_FRAMES - 1) || lastRenderedFrame === -1) {
           drawFrame(Math.round(currentFrame));
         }
         setIsReady(true);
@@ -92,8 +93,8 @@ export const HeroVideoCanvas = () => {
     };
 
     const triggerScrollLoading = (currentProgressIndex) => {
-      const windowStart = Math.max(0, Math.floor(currentProgressIndex - 15));
-      const windowEnd = Math.min(TOTAL_FRAMES - 1, Math.ceil(currentProgressIndex + 15));
+      const windowStart = Math.max(0, Math.floor(currentProgressIndex - 20));
+      const windowEnd = Math.min(TOTAL_FRAMES - 1, Math.ceil(currentProgressIndex + 20));
 
       for (let i = windowStart; i <= windowEnd; i++) {
         loadSingleFrame(i);
@@ -102,8 +103,10 @@ export const HeroVideoCanvas = () => {
       const currentChunk = Math.floor(currentProgressIndex / CHUNK_SIZE);
       loadChunk(currentChunk);
 
-      const chunkOffset = currentProgressIndex % CHUNK_SIZE;
-      if (chunkOffset > 30 && (currentChunk + 1) * CHUNK_SIZE < TOTAL_FRAMES) {
+      if (currentChunk > 0) {
+        loadChunk(currentChunk - 1);
+      }
+      if ((currentChunk + 1) * CHUNK_SIZE < TOTAL_FRAMES) {
         loadChunk(currentChunk + 1);
       }
     };
@@ -159,36 +162,20 @@ export const HeroVideoCanvas = () => {
 
       const imgW = img.naturalWidth;
       const imgH = img.naturalHeight;
-      const imgRatio = imgW / imgH;
-      const canvasRatio = canvasW / canvasH;
 
-      let drawW, drawH;
+      // Edge-to-Edge Cover Math: Eliminates all extra space and black letterbox gaps around the photo
+      const isMobile = window.innerWidth <= 768;
+      const zoom = isMobile ? 1.04 : 1.08;
+      const scale = Math.max(canvasW / imgW, canvasH / imgH) * zoom;
 
-      if (Math.abs(canvasRatio - imgRatio) < 0.02) {
-        drawW = canvasW;
-        drawH = canvasH;
-      } else if (canvasRatio > imgRatio) {
-        drawW = canvasW;
-        drawH = canvasW / imgRatio;
-      } else {
-        drawH = canvasH;
-        drawW = canvasH * imgRatio;
-      }
+      const finalW = imgW * scale;
+      const finalH = imgH * scale;
 
-      // Exact 1.0x scale to preserve full hair and avoid cutting off top headroom
-      const zoom = 1.0;
-
-      const finalW = drawW * zoom;
-      const finalH = drawH * zoom;
+      // Center horizontally on the character
       const offsetX = (canvasW - finalW) / 2;
 
-      // Safe vertical alignment: preserve head and hair at the top
-      let offsetY;
-      if (finalH > canvasH) {
-        offsetY = 0; // Top-aligned so hair is never clipped
-      } else {
-        offsetY = (canvasH - finalH) / 2;
-      }
+      // Safe top-proportional vertical alignment: preserves full hair and displays face & shoulders cleanly
+      const offsetY = Math.min(0, (canvasH - finalH) * 0.16);
 
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
@@ -210,12 +197,14 @@ export const HeroVideoCanvas = () => {
       const currentScroll = window.pageYOffset - sectionTop;
 
       if (scrollDistance <= 0) {
-        targetFrame = 0;
+        targetFrame = TOTAL_FRAMES - 1;
         return;
       }
 
+      // Scroll Down = smooth front-to-back rotation (Frame 240 -> Frame 1)
+      // Scroll Up = smooth back-to-front reversal (Frame 1 -> Frame 240)
       const progress = Math.min(Math.max(currentScroll / scrollDistance, 0), 1);
-      targetFrame = progress * (TOTAL_FRAMES - 1);
+      targetFrame = (1 - progress) * (TOTAL_FRAMES - 1);
 
       triggerScrollLoading(targetFrame);
     };
@@ -231,15 +220,15 @@ export const HeroVideoCanvas = () => {
       animId = requestAnimationFrame(renderLoop);
     };
 
-    // Initialize
+    // Initialize with real front-facing portrait frame
     drawPlaceholderGrid();
 
-    loadSingleFrame(0, () => {
-      drawFrame(0);
+    loadSingleFrame(TOTAL_FRAMES - 1, () => {
+      drawFrame(TOTAL_FRAMES - 1);
       setIsReady(true);
     });
 
-    for (let i = 1; i < 5; i++) {
+    for (let i = TOTAL_FRAMES - 2; i >= TOTAL_FRAMES - 10; i--) {
       loadSingleFrame(i);
     }
 
