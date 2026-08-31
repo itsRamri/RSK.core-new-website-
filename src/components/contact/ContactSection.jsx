@@ -195,67 +195,55 @@ export const ContactSection = ({ onShowToast }) => {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="name"><i className="fa-solid fa-user"></i> Your Name *</label>
-                  <div className="input-wrapper">
-                    <i className="fa-solid fa-user-pen"></i>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      placeholder="e.g. Saurav Sharma"
-                      required
-                    />
-                  </div>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="e.g. Saurav Sharma"
+                    required
+                  />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="call"><i className="fa-solid fa-phone"></i> Call / Phone No *</label>
-                  <div className="input-wrapper">
-                    <i className="fa-solid fa-phone-volume"></i>
-                    <input
-                      type="tel"
-                      id="call"
-                      name="call"
-                      value={formData.call}
-                      onChange={handleInputChange}
-                      placeholder="e.g. +91 9876543210"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="email"><i className="fa-solid fa-envelope"></i> Email Address *</label>
-                <div className="input-wrapper">
-                  <i className="fa-solid fa-envelope-open-text"></i>
                   <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
+                    type="tel"
+                    id="call"
+                    name="call"
+                    value={formData.call}
                     onChange={handleInputChange}
-                    placeholder="e.g. name@example.com"
+                    placeholder="e.g. +91 9876543210"
                     required
                   />
                 </div>
               </div>
 
               <div className="form-group">
+                <label htmlFor="email"><i className="fa-solid fa-envelope"></i> Email Address *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="e.g. name@example.com"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
                 <label htmlFor="message"><i className="fa-solid fa-message"></i> Message / Technical Inquiry *</label>
-                <div className="input-wrapper textarea-wrapper">
-                  <i className="fa-solid fa-comment-dots"></i>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="5"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    placeholder="Describe your project, question, or opportunity..."
-                    required
-                  ></textarea>
-                </div>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Describe your project, question, or opportunity..."
+                  required
+                ></textarea>
               </div>
 
               <button

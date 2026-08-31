@@ -20,9 +20,9 @@ export const HeroVideoCanvas = () => {
     const loadingFrames = new Set();
     const loadedChunks = new Set();
 
-    // Start on front-facing portrait frame (Frame 240)
-    let currentFrame = TOTAL_FRAMES - 1;
-    let targetFrame = TOTAL_FRAMES - 1;
+    // Start on BACK-facing portrait frame (Frame 1)
+    let currentFrame = 0;
+    let targetFrame = 0;
     let lastRenderedFrame = -1;
     let animId = null;
 
@@ -35,7 +35,7 @@ export const HeroVideoCanvas = () => {
       if (!canvas || !ctx) return;
       const w = canvas.width;
       const h = canvas.height;
-      ctx.fillStyle = '#050a14';
+      ctx.fillStyle = '#040711';
       ctx.fillRect(0, 0, w, h);
       ctx.strokeStyle = 'rgba(0, 240, 255, 0.08)';
       ctx.lineWidth = 1;
@@ -65,7 +65,7 @@ export const HeroVideoCanvas = () => {
         loadedFrames.add(i);
         loadingFrames.delete(i);
 
-        if (i === (TOTAL_FRAMES - 1) || lastRenderedFrame === -1) {
+        if (i === 0 || lastRenderedFrame === -1) {
           drawFrame(Math.round(currentFrame));
         }
         setIsReady(true);
@@ -179,7 +179,7 @@ export const HeroVideoCanvas = () => {
 
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
-      ctx.fillStyle = '#000000';
+      ctx.fillStyle = '#040711';
       ctx.fillRect(0, 0, canvasW, canvasH);
       ctx.drawImage(img, offsetX, offsetY, finalW, finalH);
       lastRenderedFrame = clampedIndex;
@@ -197,14 +197,14 @@ export const HeroVideoCanvas = () => {
       const currentScroll = window.pageYOffset - sectionTop;
 
       if (scrollDistance <= 0) {
-        targetFrame = TOTAL_FRAMES - 1;
+        targetFrame = 0;
         return;
       }
 
-      // Scroll Down = smooth front-to-back rotation (Frame 240 -> Frame 1)
-      // Scroll Up = smooth back-to-front reversal (Frame 1 -> Frame 240)
+      // Scroll Down = BACK (Frame 1) -> SIDE -> FRONT (Frame 240)
+      // Scroll Up = FRONT (Frame 240) -> SIDE -> BACK (Frame 1)
       const progress = Math.min(Math.max(currentScroll / scrollDistance, 0), 1);
-      targetFrame = (1 - progress) * (TOTAL_FRAMES - 1);
+      targetFrame = progress * (TOTAL_FRAMES - 1);
 
       triggerScrollLoading(targetFrame);
     };
@@ -220,15 +220,15 @@ export const HeroVideoCanvas = () => {
       animId = requestAnimationFrame(renderLoop);
     };
 
-    // Initialize with real front-facing portrait frame
+    // Initialize with BACK view (Frame 1)
     drawPlaceholderGrid();
 
-    loadSingleFrame(TOTAL_FRAMES - 1, () => {
-      drawFrame(TOTAL_FRAMES - 1);
+    loadSingleFrame(0, () => {
+      drawFrame(0);
       setIsReady(true);
     });
 
-    for (let i = TOTAL_FRAMES - 2; i >= TOTAL_FRAMES - 10; i--) {
+    for (let i = 1; i <= 10; i++) {
       loadSingleFrame(i);
     }
 
