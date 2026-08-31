@@ -2,13 +2,24 @@
   "name": "rsk-portfolio-website",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "npx -y vite --open",
-    "build": "echo \"Vercel Static Ready\"",
-    "preview": "npx -y serve .",
-    "serve": "npx -y serve ."
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "allowScripts": {
+    "esbuild": "allow",
+    "esbuild@0.21.5": "allow"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "sharp": "^0.35.4",
     "vite": "^5.4.0"
   }
 }
