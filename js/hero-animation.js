@@ -1,11 +1,12 @@
 /**
  * RSK Portfolio - 16:9 Landscape Hero Video Scroll Engine
- * Smart Progressive 50-Frame Batching & On-Demand Scroll Preloader
+ * Smart On-Demand Scroll Preloader & 50-Frame Chunk Manager
+ * Only loads frames when the user scrolls, in 50-frame progressive chunks
  */
 
 function initHero169ScrollAnimation() {
   const TOTAL_FRAMES = 240;
-  const BATCH_SIZE = 50;
+  const CHUNK_SIZE = 50;
   const FOLDER = 'ezgif-476a1f2348609364-jpg';
   const LERP_FACTOR = 0.085;
 
@@ -20,6 +21,7 @@ function initHero169ScrollAnimation() {
   const images = new Array(TOTAL_FRAMES);
   const loadedFrames = new Set();
   const loadingFrames = new Set();
+  const loadedChunks = new Set(); // Track loaded 50-frame chunks
 
   let currentFrame = 0;
   let targetFrame = 0;
@@ -46,7 +48,7 @@ function initHero169ScrollAnimation() {
       if (i === 0 || lastRenderedFrame === -1) {
         drawFrame(Math.round(currentFrame));
       }
-      if (loadedFrames.size >= 1 && loader) {
+      if (loader) {
         loader.classList.add('ready');
       }
       if (onComplete) onComplete(i);
@@ -54,42 +56,47 @@ function initHero169ScrollAnimation() {
 
     img.onerror = () => {
       loadingFrames.delete(i);
-      // Fallback: dismiss loader so UI is never blocked
       if (loader) {
         loader.classList.add('ready');
       }
     };
 
-    img.src = getFramePath(i + 1); // 1-indexed filenames
+    img.src = getFramePath(i + 1); // 1-indexed filenames (1 to 240)
   }
 
-  // Progressive Batch Loader: loads 50 frames at a time in chunks
-  function loadBatch(startIdx) {
-    if (startIdx >= TOTAL_FRAMES) return;
+  // Load specific 50-frame chunk (e.g. chunk 0 = 0..49, chunk 1 = 50..99)
+  function loadChunk(chunkIndex) {
+    if (loadedChunks.has(chunkIndex)) return;
+    loadedChunks.add(chunkIndex);
 
-    const endIdx = Math.min(startIdx + BATCH_SIZE, TOTAL_FRAMES);
-    let completedInBatch = 0;
-    const batchTotal = endIdx - startIdx;
+    const startIdx = chunkIndex * CHUNK_SIZE;
+    const endIdx = Math.min(startIdx + CHUNK_SIZE, TOTAL_FRAMES);
 
     for (let i = startIdx; i < endIdx; i++) {
-      loadSingleFrame(i, () => {
-        completedInBatch++;
-        // When 40% of the current batch is loaded, queue next batch of 50 gently
-        if (completedInBatch >= Math.floor(batchTotal * 0.4) && endIdx < TOTAL_FRAMES && !loadingFrames.has(endIdx)) {
-          setTimeout(() => loadBatch(endIdx), 120);
-        }
-      });
+      loadSingleFrame(i);
     }
   }
 
-  // Prioritize frames around current scroll position
-  function prioritizeNearbyFrames(centerFrame) {
-    const range = 25; // 25 frames ahead & behind
-    const start = Math.max(0, Math.floor(centerFrame - range));
-    const end = Math.min(TOTAL_FRAMES - 1, Math.ceil(centerFrame + range));
+  // On-demand loader when user scrolls:
+  // 1. Immediately loads closest 15 frames for ultra-fast response
+  // 2. Loads the 50-frame chunk corresponding to the scroll region
+  function triggerScrollLoading(currentProgressIndex) {
+    // 1. Load active window around current frame (+/- 15 frames)
+    const windowStart = Math.max(0, Math.floor(currentProgressIndex - 15));
+    const windowEnd = Math.min(TOTAL_FRAMES - 1, Math.ceil(currentProgressIndex + 15));
 
-    for (let i = start; i <= end; i++) {
+    for (let i = windowStart; i <= windowEnd; i++) {
       loadSingleFrame(i);
+    }
+
+    // 2. Load the current 50-frame chunk
+    const currentChunk = Math.floor(currentProgressIndex / CHUNK_SIZE);
+    loadChunk(currentChunk);
+
+    // 3. Preload next chunk if nearing boundary
+    const chunkOffset = currentProgressIndex % CHUNK_SIZE;
+    if (chunkOffset > 30 && (currentChunk + 1) * CHUNK_SIZE < TOTAL_FRAMES) {
+      loadChunk(currentChunk + 1);
     }
   }
 
@@ -106,9 +113,9 @@ function initHero169ScrollAnimation() {
     drawFrame(Math.round(currentFrame));
   }
 
-  // Find nearest loaded frame if exact frame is still downloading
+  // Find nearest loaded frame if current frame is still fetching
   function getNearestLoadedFrame(targetIdx) {
-    if (images[targetIdx] && images[targetIdx].complete) {
+    if (images[targetIdx] && images[targetIdx].complete && images[targetIdx].naturalWidth > 0) {
       return targetIdx;
     }
 
@@ -116,8 +123,8 @@ function initHero169ScrollAnimation() {
       const left = targetIdx - offset;
       const right = targetIdx + offset;
 
-      if (left >= 0 && images[left] && images[left].complete) return left;
-      if (right < TOTAL_FRAMES && images[right] && images[right].complete) return right;
+      if (left >= 0 && images[left] && images[left].complete && images[left].naturalWidth > 0) return left;
+      if (right < TOTAL_FRAMES && images[right] && images[right].complete && images[right].naturalWidth > 0) return right;
     }
 
     return 0;
@@ -135,7 +142,7 @@ function initHero169ScrollAnimation() {
 
     const imgW = img.naturalWidth;
     const imgH = img.naturalHeight;
-    const imgRatio = imgW / imgH; // 16:9
+    const imgRatio = imgW / imgH;
     const canvasRatio = canvasW / canvasH;
 
     let drawW, drawH, offsetX, offsetY;
@@ -192,8 +199,8 @@ function initHero169ScrollAnimation() {
     const progress = Math.min(Math.max(currentScroll / scrollDistance, 0), 1);
     targetFrame = progress * (TOTAL_FRAMES - 1);
 
-    // On-demand load surrounding frames as the user scrolls
-    prioritizeNearbyFrames(targetFrame);
+    // On scroll: load surrounding frames and active 50-frame chunk
+    triggerScrollLoading(targetFrame);
   }
 
   function renderLoop() {
@@ -207,23 +214,26 @@ function initHero169ScrollAnimation() {
     requestAnimationFrame(renderLoop);
   }
 
-  // Initialize: Load Frame 1 immediately, then start 50-by-50 progressive batches
+  // Initial Load Strategy:
+  // ONLY load Frame 0 immediately. Do NOT load all 240 frames up front!
   function initLoadingStrategy() {
-    // 1. Immediately fetch first frame for instant display
+    // 1. Fetch only the first frame (Frame 0) for instant startup
     loadSingleFrame(0, () => {
       drawFrame(0);
       if (loader) loader.classList.add('ready');
     });
 
-    // 2. Load first batch (0 to 50)
-    loadBatch(0);
+    // 2. Preload first 5 frames so initial gentle scroll is seamless
+    for (let i = 1; i < 5; i++) {
+      loadSingleFrame(i);
+    }
 
-    // 3. Safety timeout: dismiss loader after 1.5s regardless of network latency
+    // 3. Failsafe timeout: hide loader after 1s no matter what
     setTimeout(() => {
       if (loader && !loader.classList.contains('ready')) {
         loader.classList.add('ready');
       }
-    }, 1500);
+    }, 1000);
   }
 
   window.addEventListener('resize', resizeCanvas, { passive: true });

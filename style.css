@@ -321,7 +321,7 @@ h1, h2, h3, h4, h5, h6 {
 .section {
   padding: 6.5rem 0;
   position: relative;
-  z-index: 1;
+  z-index: 5;
 }
 
 .section-header {
@@ -543,7 +543,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-pinned-section {
   position: relative;
-  height: 320vh; /* Smooth scroll runway */
+  height: 250vh; /* Smooth scroll runway */
   width: 100%;
   z-index: 2;
 }

@@ -34,9 +34,9 @@ function initNavbarAndScroll() {
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) {
-      header.classList.add('scrolled');
+      header && header.classList.add('scrolled');
     } else {
-      header.classList.remove('scrolled');
+      header && header.classList.remove('scrolled');
     }
     highlightNavOnScroll();
   }, { passive: true });
@@ -108,7 +108,7 @@ function initSkillMetersAndFilter() {
         }
       }
     });
-  }, { threshold: 0.2 });
+  }, { threshold: 0.1 });
 
   cards.forEach(card => observer.observe(card));
 }
@@ -139,14 +139,19 @@ function initCounters() {
         });
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.2 });
 
-  const statsSection = document.querySelector('.about-stats-grid') || document.querySelector('.hero-metrics');
+  const statsSection = document.querySelector('.about-stats-grid') || document.querySelector('.hero-bottom-metrics-row');
   if (statsSection) observer.observe(statsSection);
 }
 
 function initScrollReveal() {
   const revealElements = document.querySelectorAll('[data-reveal]');
+
+  if (!('IntersectionObserver' in window)) {
+    revealElements.forEach(el => el.classList.add('revealed'));
+    return;
+  }
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -154,9 +159,14 @@ function initScrollReveal() {
         entry.target.classList.add('revealed');
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
 
   revealElements.forEach(el => observer.observe(el));
+
+  // Safety fallback: reveal all elements so nothing is ever hidden permanently
+  setTimeout(() => {
+    revealElements.forEach(el => el.classList.add('revealed'));
+  }, 1200);
 }
 
 function initResumeModal() {
@@ -183,11 +193,17 @@ function initResumeModal() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function initAllMain() {
   initThemePicker();
   initNavbarAndScroll();
   initSkillMetersAndFilter();
   initCounters();
   initScrollReveal();
   initResumeModal();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAllMain);
+} else {
+  initAllMain();
+}
