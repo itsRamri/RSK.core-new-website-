@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "allowScripts": {
-    "esbuild": "allow",
-    "esbuild@0.21.5": "allow"
+    "esbuild": true,
+    "esbuild@0.21.5": true
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
