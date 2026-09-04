@@ -30,9 +30,9 @@ export const Navbar = () => {
   }, []);
 
   const navLinks = [
+    { label: 'About', href: '#about', id: 'about' },
+    { label: 'Experience', href: '#experience', id: 'experience' },
     { label: 'Work', href: '#achievements', id: 'achievements' },
-    { label: 'Service', href: '#about', id: 'about' },
-    { label: 'Experience', count: '3yr', href: '#experience', id: 'experience' },
     { label: 'Contact', href: '#contact', id: 'contact' },
   ];
 
