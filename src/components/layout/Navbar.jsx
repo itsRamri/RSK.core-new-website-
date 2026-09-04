@@ -30,9 +30,9 @@ export const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { label: 'About', href: '#about', id: 'about' },
-    { label: 'Education', href: '#experience', id: 'experience' },
-    { label: 'Achievements', href: '#achievements', id: 'achievements' },
+    { label: 'Work', count: '14', href: '#achievements', id: 'achievements' },
+    { label: 'Service', count: '12', href: '#about', id: 'about' },
+    { label: 'Experience', count: '3yr', href: '#experience', id: 'experience' },
     { label: 'Contact', href: '#contact', id: 'contact' },
   ];
 
@@ -59,11 +59,15 @@ export const Navbar = () => {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <span className="nav-link-text">{link.label}</span>
+                  {link.count && (
+                    <span className="nav-link-count">{link.count}</span>
+                  )}
                 </a>
               </li>
             ))}
           </ul>
         </nav>
+
 
         {/* Right: Actions (Theme Light/Dark Toggle & Let's Talk CTA) */}
         <div className="nav-right-actions">
