@@ -416,10 +416,10 @@ body[data-mode="dark"] .nav-link-item.active {
   width: 100%;
   margin-top: 1.25rem;
   margin-bottom: -2.8rem;
-  font-family: 'Outfit', 'Space Grotesk', -apple-system, sans-serif;
+  font-family: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: clamp(2.4rem, 6.4vw, 6.2rem);
   font-weight: 900;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.01em;
   line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
@@ -430,22 +430,31 @@ body[data-mode="dark"] .nav-link-item.active {
   z-index: 1;
   padding: 0 1rem;
   font-variant-ligatures: none;
-  font-feature-settings: "liga" 0, "clig" 0, "dlig" 0, "hlig" 0, "calt" 0;
 }
 
 .hero-title-outline {
-  -webkit-text-stroke: 2px var(--hero-outline-color);
-  color: transparent;
+  color: var(--bg-body);
+  text-shadow: 
+    -1.5px -1.5px 0 var(--hero-outline-color),
+     1.5px -1.5px 0 var(--hero-outline-color),
+    -1.5px  1.5px 0 var(--hero-outline-color),
+     1.5px  1.5px 0 var(--hero-outline-color),
+    -1.5px  0px   0 var(--hero-outline-color),
+     1.5px  0px   0 var(--hero-outline-color),
+     0px   -1.5px 0 var(--hero-outline-color),
+     0px    1.5px 0 var(--hero-outline-color);
+  -webkit-text-stroke: 0px transparent;
   display: inline-block;
   font-weight: 900;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .hero-title-solid {
   color: var(--hero-solid-color);
   display: inline-block;
   font-weight: 900;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.01em;
 }
 
 
