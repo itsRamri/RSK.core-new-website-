@@ -175,9 +175,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .highlight {
   color: var(--text-heading);
-  text-decoration: underline;
-  text-decoration-thickness: 3px;
-  text-underline-offset: 6px;
 }
 
 /* Ambient Background Glow Elements Removed as requested */
