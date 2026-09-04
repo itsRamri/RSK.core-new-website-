@@ -4,46 +4,56 @@
    ========================================================================== */
 
 :root {
-  /* Default Light Mode (Clean White Editorial #FFFFFF) */
-  --bg-body: #ffffff;
+  /* Editorial Palette Colors */
+  --background: #FEFEFE;
+  --cream: #FEEFC4;
+  --cream-light: #FDF3DB;
+  --beige: #EFDEC4;
+  --text: #241A15;
+  --black: #000000;
+  --brown: #8B6B55;
+  --accent: #FFB000;
+
+  /* Default Light Mode (Clean Warm Editorial) */
+  --bg-body: var(--background);
   --bg-surface: #ffffff;
   --bg-card: #ffffff;
-  --bg-card-hover: #f8fafc;
+  --bg-card-hover: var(--cream-light);
   --bg-pill: #ffffff;
-  --bg-pill-hover: #000000;
+  --bg-pill-hover: var(--black);
   
-  --text-main: #0a0a0a;
-  --text-heading: #000000;
-  --text-muted: #64748b;
-  --text-dim: #94a3b8;
+  --text-main: var(--text);
+  --text-heading: var(--black);
+  --text-muted: var(--brown);
+  --text-dim: #9e8574;
   
-  --border-color: rgba(0, 0, 0, 0.08);
-  --border-card: rgba(0, 0, 0, 0.06);
-  --border-hover: rgba(0, 0, 0, 0.2);
+  --border-color: rgba(139, 107, 85, 0.18);
+  --border-card: rgba(139, 107, 85, 0.12);
+  --border-hover: var(--brown);
   
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.08);
-  --shadow-portrait: 0 25px 60px rgba(0, 0, 0, 0.12);
+  --shadow-sm: 0 2px 8px rgba(36, 26, 21, 0.04);
+  --shadow-md: 0 10px 30px rgba(36, 26, 21, 0.06);
+  --shadow-lg: 0 20px 50px rgba(36, 26, 21, 0.08);
+  --shadow-portrait: 0 25px 60px rgba(36, 26, 21, 0.12);
 
   /* Typography & Hero Specifics */
-  --hero-outline-color: #000000;
-  --hero-solid-color: #000000;
-  --hero-pill-bg: #000000;
-  --hero-pill-text: #ffffff;
+  --hero-outline-color: var(--black);
+  --hero-solid-color: var(--black);
+  --hero-pill-bg: var(--black);
+  --hero-pill-text: var(--background);
   --hero-social-bg: #ffffff;
-  --hero-social-text: #000000;
-  --hero-social-border: rgba(0, 0, 0, 0.1);
+  --hero-social-text: var(--text);
+  --hero-social-border: rgba(139, 107, 85, 0.18);
 
-
-  /* Monochrome Primary Accents */
-  --primary: #0a0a0a;
-  --primary-rgb: 10, 10, 10;
-  --primary-glow: rgba(0, 0, 0, 0.12);
+  /* Monochrome / Editorial Accents */
+  --primary: var(--black);
+  --primary-rgb: 0, 0, 0;
+  --primary-glow: rgba(255, 176, 0, 0.18);
+  --status-orange: var(--accent);
   --status-green: #10b981;
 
-  --grad-primary: linear-gradient(135deg, #0a0a0a 0%, #333333 100%);
-  --grad-card: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  --grad-primary: linear-gradient(135deg, var(--black) 0%, #333333 100%);
+  --grad-card: linear-gradient(145deg, #ffffff 0%, var(--cream-light) 100%);
   
   /* Radii */
   --radius-xs: 6px;
@@ -54,8 +64,8 @@
   --radius-full: 9999px;
 
   /* Typography Fonts */
-  --font-heading: 'Outfit', 'Space Grotesk', -apple-system, sans-serif;
-  --font-body: 'Outfit', -apple-system, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   /* Transitions */
@@ -386,15 +396,39 @@ body[data-mode="dark"] .nav-link-item.active {
    ========================================================================== */
 
 
+/* ==========================================================================
+   HERO SECTION - Exact High-End Editorial Layout (Ref: "I AM MADISON")
+   ========================================================================== */
+
 .hero-modern-section {
   position: relative;
   min-height: calc(100vh - 40px);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 5.5rem;
-  padding-bottom: 2.5rem;
+  padding-top: 5rem;
+  padding-bottom: 2rem;
   overflow: hidden;
+}
+
+/* Warm Golden / Amber Luminous Aura Behind Subject */
+.hero-golden-aura {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 650px;
+  max-width: 95vw;
+  border-radius: 50%;
+  background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(253, 224, 71, 0.38) 0%, rgba(254, 240, 138, 0.18) 45%, rgba(255, 255, 255, 0) 75%);
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(40px);
+}
+
+body[data-mode="dark"] .hero-golden-aura {
+  background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(245, 158, 11, 0.2) 0%, rgba(18, 48, 74, 0.32) 48%, rgba(8, 13, 19, 0) 80%);
 }
 
 .hero-container {
@@ -402,91 +436,132 @@ body[data-mode="dark"] .nav-link-item.active {
   flex-direction: column;
   position: relative;
   z-index: 2;
-  max-width: 1320px;
+  max-width: 1360px;
   margin: 0 auto;
   width: 100%;
 }
 
-/* Giant Background Typography - Clean Modern Editorial */
-.hero-giant-typography {
+/* 1. Top Script Greeting ("Hey," on left, "there" on right framing the head) */
+.hero-script-header {
+  position: absolute;
+  top: -2.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: clamp(0.75rem, 1.8vw, 1.6rem);
-  width: 100%;
-  margin-top: 1.25rem;
-  margin-bottom: -2.8rem;
-  font-family: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: clamp(2.4rem, 6.4vw, 6.2rem);
-  font-weight: 900;
+  align-items: center;
+  gap: clamp(260px, 22vw, 420px);
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.hero-script-left,
+.hero-script-right {
+  font-family: 'Instrument Serif', 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(4.2rem, 7.8vw, 7.5rem);
+  font-weight: 400;
+  color: var(--text-heading);
   letter-spacing: -0.01em;
   line-height: 1;
-  text-transform: uppercase;
-  white-space: nowrap;
-  user-select: none;
-  pointer-events: none;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-  padding: 0 1rem;
-  font-variant-ligatures: none;
-}
-
-.hero-title-outline {
-  color: var(--bg-body);
-  text-shadow: 
-    -1.5px -1.5px 0 var(--hero-outline-color),
-     1.5px -1.5px 0 var(--hero-outline-color),
-    -1.5px  1.5px 0 var(--hero-outline-color),
-     1.5px  1.5px 0 var(--hero-outline-color),
-    -1.5px  0px   0 var(--hero-outline-color),
-     1.5px  0px   0 var(--hero-outline-color),
-     0px   -1.5px 0 var(--hero-outline-color),
-     0px    1.5px 0 var(--hero-outline-color);
-  -webkit-text-stroke: 0px transparent;
+  opacity: 0.92;
   display: inline-block;
-  font-weight: 900;
-  letter-spacing: -0.01em;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-.hero-title-solid {
-  color: var(--hero-solid-color);
-  display: inline-block;
-  font-weight: 900;
-  letter-spacing: -0.01em;
-}
-
-
-/* 3-Column Main Stage (Left Info + Center Portrait + Right Socials) */
-.hero-main-stage {
+/* 2. 3-Column Editorial Stage Framing the Portrait */
+.hero-editorial-stage {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1.15fr auto 1.15fr;
   align-items: flex-end;
-  gap: 2.5rem;
+  gap: 1.5rem;
   width: 100%;
   position: relative;
   z-index: 2;
-  padding-bottom: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 0.5rem;
 }
 
-/* Left Column */
-.hero-left-column {
+/* Left Editorial Column: Status Pill, "I AM SHUBHAM", Bio, CTA */
+.hero-left-editorial {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 320px;
+  max-width: 420px;
   z-index: 4;
-  padding-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
 }
 
-.hero-role-title {
-  font-size: clamp(1.85rem, 2.8vw, 2.4rem);
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  line-height: 1.15;
-  margin-bottom: 0.85rem;
+.hero-editorial-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-main);
+  margin-bottom: 2.2rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+}
+
+.status-orange-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #f97316;
+  box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7);
+  animation: pulseOrange 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes pulseOrange {
+  0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); }
+  70% { box-shadow: 0 0 0 7px rgba(249, 115, 22, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+}
+
+.hero-name-block {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+
+.hero-name-intro {
+  font-family: 'Oswald', 'Bebas Neue', 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
   color: var(--text-heading);
+  text-transform: uppercase;
+  margin-bottom: 0.15rem;
+}
+
+.hero-name-main {
+  font-family: 'Oswald', 'Bebas Neue', 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(3.4rem, 5.8vw, 5.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.86;
+  color: var(--text-heading);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.hero-name-last {
+  font-family: 'Oswald', 'Bebas Neue', 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(3.4rem, 5.8vw, 5.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.86;
+  color: var(--text-heading);
+  text-transform: uppercase;
+  margin-top: 0.1rem;
 }
 
 .hero-role-desc {
@@ -494,6 +569,7 @@ body[data-mode="dark"] .nav-link-item.active {
   line-height: 1.55;
   color: var(--text-muted);
   margin-bottom: 1.5rem;
+  max-width: 340px;
 }
 
 .hero-cta-actions {
@@ -544,11 +620,11 @@ body[data-mode="dark"] .nav-link-item.active {
 .hero-cutout-wrapper {
   position: relative;
   width: 100%;
-  max-width: 490px;
+  max-width: 480px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  margin-top: 0.5rem;
+  margin-top: 0;
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -561,15 +637,52 @@ body[data-mode="dark"] .nav-link-item.active {
 
 .hero-cutout-canvas {
   width: 100%;
-  max-width: 480px;
+  max-width: 460px;
   height: auto;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
+  max-height: 72vh;
+  object-fit: cover;
+  border-radius: 28px;
+  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
   display: block;
-  background: transparent;
-  border: none;
-  box-shadow: none;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
   pointer-events: none;
+}
+
+/* Right Editorial Column: Specialty at Top, Stacked Role at Bottom */
+.hero-right-editorial {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-align: right;
+  z-index: 4;
+  padding-bottom: 1.5rem;
+  min-height: 100%;
+  align-self: stretch;
+}
+
+.hero-specialty-note {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  max-width: 260px;
+  text-align: right;
+  margin-top: 0.5rem;
+}
+
+.hero-stacked-role-block {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Oswald', 'Bebas Neue', 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2.2rem, 3.6vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 0.90;
+  color: var(--text-heading);
+  text-transform: uppercase;
+  text-align: right;
+  margin-top: auto;
 }
 
 
@@ -1600,7 +1713,7 @@ a.contact-card-value:hover {
    ========================================================================== */
 
 @media (max-width: 1024px) {
-  .hero-main-stage {
+  .hero-editorial-stage {
     grid-template-columns: 1fr;
     justify-items: center;
     text-align: center;
@@ -1612,28 +1725,45 @@ a.contact-card-value:hover {
   }
 
   .hero-cutout-wrapper {
-    max-width: 440px;
-    margin-top: -2rem;
+    max-width: 420px;
+    margin-top: 0;
   }
 
   .hero-cutout-canvas {
-    max-width: 420px;
+    max-width: 400px;
   }
 
-  .hero-left-column {
+  .hero-left-editorial {
     align-items: center;
-    max-width: 500px;
+    text-align: center;
+    max-width: 480px;
     padding-bottom: 0;
+  }
+
+  .hero-role-desc {
+    text-align: center;
   }
 
   .hero-cta-actions {
     justify-content: center;
   }
 
-  .hero-right-column {
-    justify-content: center;
+  .hero-right-editorial {
+    align-items: center;
+    text-align: center;
     width: 100%;
+    max-width: 480px;
     padding-bottom: 0;
+    gap: 1.25rem;
+  }
+
+  .hero-specialty-note {
+    text-align: center;
+  }
+
+  .hero-stacked-role-block {
+    align-items: center;
+    text-align: center;
   }
 
   .social-pills-list {
@@ -1660,12 +1790,72 @@ a.contact-card-value:hover {
 @media (max-width: 768px) {
   .hero-modern-section {
     padding-top: 5rem;
-    padding-bottom: 3rem;
+    padding-bottom: 2.5rem;
     min-height: auto;
   }
 
   .hero-container {
-    gap: 1.25rem;
+    gap: 1rem;
+  }
+
+  .hero-golden-aura {
+    width: 450px;
+    height: 380px;
+    top: 0;
+  }
+
+  .hero-script-header {
+    top: -0.8rem;
+  }
+
+  .hero-script-part {
+    font-size: clamp(2.8rem, 11vw, 4.4rem);
+  }
+
+  .hero-editorial-stage {
+    gap: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 0;
+  }
+
+  .hero-cutout-wrapper {
+    max-width: 290px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-cutout-canvas {
+    max-width: 280px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+  }
+
+  .hero-left-editorial {
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+    padding-bottom: 0;
+  }
+
+  .hero-name-intro {
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
+  }
+
+  .hero-name-main {
+    font-size: clamp(3.2rem, 12vw, 4.8rem);
+  }
+
+  .hero-stacked-role-block {
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-role-desc {
+    font-size: 0.9rem;
+    text-align: center;
+    max-width: 340px;
+    margin-bottom: 1.25rem;
   }
 
   .nav-center-menu {
@@ -1702,66 +1892,6 @@ a.contact-card-value:hover {
     display: none;
   }
 
-  /* Mobile Typography: clean and centered above the portrait */
-  .hero-giant-typography {
-    font-size: clamp(2.2rem, 11vw, 3.6rem);
-    flex-direction: column;
-    gap: 0.15rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    line-height: 0.95;
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-main-stage {
-    gap: 1.5rem;
-    padding-bottom: 0;
-  }
-
-  /* Mobile Portrait: positioned slightly down between heading & role text */
-  .hero-cutout-wrapper {
-    max-width: 290px;
-    margin-top: 0.75rem;
-    margin-bottom: 0.5rem;
-    transform: translateY(28px);
-  }
-
-  .hero-cutout-wrapper.loaded {
-    transform: translateY(28px);
-  }
-
-  .hero-cutout-canvas {
-    max-width: 280px;
-    aspect-ratio: 1 / 1;
-    object-fit: contain;
-  }
-
-  .hero-left-column {
-    align-items: center;
-    text-align: center;
-    max-width: 100%;
-    padding-top: 1rem;
-    padding-bottom: 0;
-  }
-
-  .hero-role-title {
-    font-size: clamp(1.4rem, 5.5vw, 1.85rem);
-    text-align: center;
-    margin-bottom: 0.65rem;
-  }
-
-  .hero-role-desc {
-    font-size: 0.9rem;
-    text-align: center;
-    max-width: 360px;
-    margin-bottom: 1.25rem;
-  }
-
-  .hero-cta-actions {
-    justify-content: center;
-  }
-
   .hero-metrics-strip {
     flex-direction: column;
     align-items: flex-start;
@@ -1792,34 +1922,30 @@ a.contact-card-value:hover {
 }
 
 @media (max-width: 480px) {
-  .hero-giant-typography {
-    font-size: clamp(1.95rem, 10.5vw, 2.8rem);
-    margin-bottom: 0.35rem;
+  .hero-script-text {
+    font-size: 2.5rem;
   }
 
   .hero-cutout-wrapper {
     max-width: 250px;
-    margin-top: 0.5rem;
-    margin-bottom: 0.35rem;
-    transform: translateY(22px);
-  }
-
-  .hero-cutout-wrapper.loaded {
-    transform: translateY(22px);
   }
 
   .hero-cutout-canvas {
     max-width: 240px;
   }
 
-  .hero-role-title {
-    font-size: 1.35rem;
+  .hero-name-main,
+  .hero-surname-main {
+    font-size: 2.3rem;
+  }
+
+  .hero-stacked-profession {
+    font-size: 1.05rem;
   }
 
   .hero-role-desc {
     font-size: 0.85rem;
     padding: 0 0.5rem;
-    max-width: 320px;
   }
 
   .social-pills-list {
