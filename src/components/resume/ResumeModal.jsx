@@ -27,7 +27,7 @@ export const ResumeModal = ({ isOpen, onClose }) => {
           <div className="resume-preview-sheet">
             <div className="resume-sheet-header">
               <h3>Ramri Shubham Kumar</h3>
-              <p>Diploma in ECE (2024-27) • rsk149652@gmail.com • +91 7766939312 • Bihar (Dhamaul)</p>
+              <p>Diploma in ECE (2024-27) • rsk149652@gmail.com • Bihar (Dhamaul), India</p>
             </div>
             <hr className="resume-divider" />
             <div className="resume-section-item">

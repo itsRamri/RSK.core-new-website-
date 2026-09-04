@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 
 export const Navbar = () => {
-  const { theme, changeTheme, themes } = useTheme();
+  const { mode, toggleMode } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 30);
 
       const sections = document.querySelectorAll('section[id]');
       const scrollY = window.pageYOffset;
@@ -31,86 +31,82 @@ export const Navbar = () => {
 
   const navLinks = [
     { label: 'About', href: '#about', id: 'about' },
-    { label: 'Skills', href: '#skills', id: 'skills' },
-    { label: 'Projects', href: '#projects', id: 'projects' },
-    { label: 'Lab', href: '#workbench', id: 'workbench' },
     { label: 'Education', href: '#experience', id: 'experience' },
-    { label: 'Credentials', href: '#certifications', id: 'certifications' },
+    { label: 'Achievements', href: '#achievements', id: 'achievements' },
     { label: 'Contact', href: '#contact', id: 'contact' },
   ];
 
   return (
-    <header className={`site-header header ${isScrolled ? 'scrolled' : ''}`} id="header">
-      <nav className="navbar container">
-        {/* Brand Logo */}
-        <a href="#hero" className="brand-logo" onClick={() => setIsMobileMenuOpen(false)}>
-          <div className="logo-chip">
-            <span className="chip-pin pin-t1"></span>
-            <span className="chip-pin pin-t2"></span>
-            <span className="chip-core">
-              <i className="fa-solid fa-microchip"></i>
-            </span>
-            <span className="chip-pin pin-b1"></span>
-            <span className="chip-pin pin-b2"></span>
-          </div>
-          <div className="brand-text">
-            <span className="brand-name">RSK<span className="highlight">.CORE</span></span>
-            <span className="brand-sub">ECE PORTFOLIO</span>
-          </div>
-        </a>
+    <header className={`modern-navbar-header ${isScrolled ? 'scrolled' : ''}`} id="header">
+      <div className="container nav-wrapper">
+        
+        {/* Left: Status Badge / Available for New Project */}
+        <div className="nav-left-section">
+          <a href="#contact" className="nav-status-pill" title="Currently available for hire and freelance projects">
+            <span className="status-green-dot"></span>
+            <span className="status-label">Available for New Project</span>
+          </a>
+        </div>
 
-        {/* Nav Links */}
-        <ul className={`nav-menu ${isMobileMenuOpen ? 'open' : ''}`} id="nav-menu">
-          {navLinks.map((link) => (
-            <li key={link.id} className="nav-item">
-              <a
-                href={link.href}
-                className={`nav-link ${activeSection === link.id ? 'active' : ''}`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        {/* Action Controls */}
-        <div className="nav-actions">
-          {/* Theme Accent Switcher */}
-          <div className="theme-picker" title="Switch Accent Theme">
-            {themes.map((t) => (
-              <button
-                key={t}
-                className={`theme-btn theme-${t} ${theme === t ? 'active' : ''}`}
-                data-color={t}
-                aria-label={`${t} theme`}
-                onClick={() => changeTheme(t)}
-              />
+        {/* Center: Navigation Links */}
+        <nav className={`nav-center-menu ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+          <ul className="nav-links-list">
+            {navLinks.map((link) => (
+              <li key={link.id} className="nav-item">
+                <a
+                  href={link.href}
+                  className={`nav-link-item ${activeSection === link.id ? 'active' : ''}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <span className="nav-link-text">{link.label}</span>
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
+        </nav>
 
-          <a
-            href="https://wa.me/917766939312?text=Hello%20Ramri%20Shubham%20Kumar,%20I%20visited%20your%20portfolio!"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-sm btn-glow hide-mobile"
+        {/* Right: Actions (Theme Light/Dark Toggle & Let's Talk CTA) */}
+        <div className="nav-right-actions">
+          
+          {/* Light / Dark Mode Toggle Button */}
+          <button
+            type="button"
+            className="theme-mode-toggle"
+            onClick={toggleMode}
+            title={`Switch to ${mode === 'light' ? 'Dark' : 'Light'} Mode`}
+            aria-label="Toggle theme appearance"
           >
-            <i className="fa-brands fa-whatsapp"></i> WhatsApp
+            {mode === 'light' ? (
+              <i className="fa-solid fa-moon"></i>
+            ) : (
+              <i className="fa-solid fa-sun"></i>
+            )}
+          </button>
+
+          {/* Let's Talk CTA Button */}
+          <a
+            href="#contact"
+            className="nav-cta-talk-btn"
+          >
+            <span>Let's Talk</span>
+            <i className="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
 
-          {/* Hamburger Toggle */}
+          {/* Mobile Hamburger Button */}
           <button
-            className="hamburger-btn"
-            id="hamburger-btn"
+            className="nav-mobile-hamburger"
+            id="mobile-hamburger-btn"
             aria-label="Toggle navigation menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <span className="bar"></span>
-            <span className="bar"></span>
-            <span className="bar"></span>
+            <span className={`bar ${isMobileMenuOpen ? 'bar-top' : ''}`}></span>
+            <span className={`bar ${isMobileMenuOpen ? 'bar-mid' : ''}`}></span>
+            <span className={`bar ${isMobileMenuOpen ? 'bar-bot' : ''}`}></span>
           </button>
+
         </div>
-      </nav>
+
+      </div>
     </header>
   );
 };

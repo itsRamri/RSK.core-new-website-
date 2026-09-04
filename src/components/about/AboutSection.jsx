@@ -85,13 +85,9 @@ export const AboutSection = () => {
               <div className="profile-contacts">
                 <div className="contact-pill"><i className="fa-solid fa-location-dot"></i> Bihar (Dhamaul), India</div>
                 <div className="contact-pill"><i className="fa-solid fa-envelope"></i> rsk149652@gmail.com</div>
-                <div className="contact-pill"><i className="fa-solid fa-phone"></i> +91 7766939312</div>
               </div>
 
               <div className="profile-socials">
-                <a href="https://wa.me/917766939312" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="WhatsApp">
-                  <i className="fa-brands fa-whatsapp"></i>
-                </a>
                 <a href="mailto:rsk149652@gmail.com" className="social-icon" aria-label="Email">
                   <i className="fa-solid fa-envelope"></i>
                 </a>
@@ -100,6 +96,9 @@ export const AboutSection = () => {
                 </a>
                 <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="GitHub">
                   <i className="fa-brands fa-github"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Instagram">
+                  <i className="fa-brands fa-instagram"></i>
                 </a>
               </div>
             </div>

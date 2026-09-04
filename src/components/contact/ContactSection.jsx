@@ -10,8 +10,8 @@ const EMAILJS_CONFIG = {
 export const ContactSection = ({ onShowToast }) => {
   const [formData, setFormData] = useState({
     name: '',
-    call: '',
     email: '',
+    subject: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,47 +23,24 @@ export const ContactSection = ({ onShowToast }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const fallbackCopy = (text, fieldName) => {
-    try {
-      const textArea = document.createElement('textarea');
-      textArea.value = text;
-      textArea.style.position = 'fixed';
-      textArea.style.opacity = '0';
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
-      if (onShowToast) onShowToast(`Copied to clipboard: ${text}`, 'success');
-      setCopiedField(fieldName);
-      setTimeout(() => setCopiedField(null), 2000);
-    } catch (e) {
-      if (onShowToast) onShowToast(`Contact: ${text}`, 'info');
-    }
-  };
-
   const handleCopy = (text, fieldName) => {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(() => {
-        if (onShowToast) onShowToast(`Copied to clipboard: ${text}`, 'success');
-        setCopiedField(fieldName);
-        setTimeout(() => setCopiedField(null), 2000);
-      }).catch(() => {
-        fallbackCopy(text, fieldName);
-      });
-    } else {
-      fallbackCopy(text, fieldName);
-    }
+    navigator.clipboard.writeText(text).then(() => {
+      setCopiedField(fieldName);
+      if (onShowToast) onShowToast(`Copied to clipboard: ${text}`, 'success');
+      setTimeout(() => setCopiedField(null), 2500);
+    }).catch(() => {
+      if (onShowToast) onShowToast(`Contact: ${text}`, 'info');
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, call, email, message } = formData;
+    const { name, email, subject, message } = formData;
 
-    if (!name.trim() || !call.trim() || !email.trim() || !message.trim()) {
-      const errMsg = 'Please fill all required fields (Name, Call, Email, Message).';
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      const errMsg = 'Please fill in all required fields (Name, Email, Message).';
       if (onShowToast) onShowToast(errMsg, 'error');
-      setFormStatus({ message: `⚠ ${errMsg}`, type: 'error' });
+      setFormStatus({ message: errMsg, type: 'error' });
       return;
     }
 
@@ -71,7 +48,7 @@ export const ContactSection = ({ onShowToast }) => {
     if (!emailRegex.test(email.trim())) {
       const errMsg = 'Please enter a valid email address (e.g. name@example.com).';
       if (onShowToast) onShowToast(errMsg, 'error');
-      setFormStatus({ message: `⚠ ${errMsg}`, type: 'error' });
+      setFormStatus({ message: errMsg, type: 'error' });
       return;
     }
 
@@ -88,16 +65,15 @@ export const ContactSection = ({ onShowToast }) => {
 
     const templateParams = {
       name,
-      call,
-      phone: call,
       email,
-      message: `Contact/Call: ${call}\nEmail: ${email}\n\nMessage Payload:\n${message}`,
+      subject: subject || 'Portfolio Inquiry',
+      message: `Subject: ${subject || 'General Inquiry'}\nEmail: ${email}\n\nMessage:\n${message}`,
       time: timeFormatted,
       reply_to: email
     };
 
     setIsSubmitting(true);
-    setFormStatus({ message: 'Transmitting signal to Ramri Shubham Kumar...', type: 'info' });
+    setFormStatus({ message: 'Sending message to Ramri Shubham Kumar...', type: 'info' });
 
     try {
       emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
@@ -108,27 +84,27 @@ export const ContactSection = ({ onShowToast }) => {
       );
 
       if (response.status === 200 || response.text === 'OK') {
-        setFormData({ name: '', call: '', email: '', message: '' });
+        setFormData({ name: '', email: '', subject: '', message: '' });
         setFormStatus({
-          message: '✓ Message Sent Successfully via EmailJS! I will reach out soon.',
+          message: '✓ Thank you! Your message has been sent successfully.',
           type: 'success'
         });
-        if (onShowToast) onShowToast(`Thank you ${name}! Your message & contact info has been sent.`, 'success');
-        setTimeout(() => setFormStatus({ message: '', type: '' }), 7000);
+        if (onShowToast) onShowToast(`Thank you ${name}! Your message has been sent.`, 'success');
+        setTimeout(() => setFormStatus({ message: '', type: '' }), 6000);
       } else {
         throw new Error(`EmailJS status: ${response.status}`);
       }
     } catch (err) {
-      console.warn('EmailJS error, triggering fallback:', err);
+      console.warn('EmailJS fallback triggered:', err);
       window.open(
-        `mailto:rsk149652@gmail.com?subject=${encodeURIComponent("Portfolio Message from " + name)}&body=${encodeURIComponent("Name: " + name + "\nCall/Phone: " + call + "\nEmail: " + email + "\nTime: " + timeFormatted + "\n\nMessage:\n" + message)}`,
+        `mailto:rsk149652@gmail.com?subject=${encodeURIComponent(subject || "Portfolio Inquiry from " + name)}&body=${encodeURIComponent("Name: " + name + "\nEmail: " + email + "\nTime: " + timeFormatted + "\n\nMessage:\n" + message)}`,
         '_blank'
       );
       setFormStatus({
         message: '✓ Opening direct mail client (rsk149652@gmail.com) to complete transmission.',
         type: 'success'
       });
-      if (onShowToast) onShowToast('Opening default mail client to dispatch message...', 'success');
+      if (onShowToast) onShowToast('Opening email client to send message...', 'success');
     } finally {
       setIsSubmitting(false);
     }
@@ -137,175 +113,181 @@ export const ContactSection = ({ onShowToast }) => {
   return (
     <section className="section contact-section" id="contact">
       <div className="container">
+        
+        {/* Section Header */}
         <div className="section-header" data-reveal>
           <span className="section-tag">
-            <i className="fa-solid fa-satellite-dish"></i> DIRECT TRANSMISSION
+            <i className="fa-solid fa-paper-plane"></i> LET'S CONNECT
           </span>
           <h2 className="section-title">Get in <span className="highlight">Touch</span></h2>
           <p className="section-desc">
-            Have an engineering opportunity, project idea, or discussion? Send a message directly to <strong>rsk149652@gmail.com</strong>.
+            Have a project idea, design inquiry, or opportunity? Drop a message below or email directly.
           </p>
         </div>
 
-        <div className="contact-grid">
-          {/* Contact Info Cards */}
-          <div className="contact-cards-column" data-reveal>
-            <div className="contact-info-card glass-card">
-              <div className="contact-icon"><i className="fa-solid fa-envelope"></i></div>
-              <div className="contact-details">
-                <span className="contact-label">Direct Email</span>
-                <span className="contact-value">rsk149652@gmail.com</span>
+        <div className="contact-modern-grid">
+          
+          {/* Left Column: Direct Contact Info */}
+          <div className="contact-info-col" data-reveal>
+            
+            {/* Email Card */}
+            <div className="contact-card-item glass-card">
+              <div className="contact-card-icon">
+                <i className="fa-solid fa-envelope"></i>
+              </div>
+              <div className="contact-card-content">
+                <span className="contact-card-label">Direct Email</span>
+                <a href="mailto:rsk149652@gmail.com" className="contact-card-value">
+                  rsk149652@gmail.com
+                </a>
               </div>
               <button
-                className="copy-btn"
+                type="button"
+                className="contact-copy-btn"
                 title="Copy Email"
                 onClick={() => handleCopy('rsk149652@gmail.com', 'email')}
               >
                 {copiedField === 'email' ? (
-                  <i className="fa-solid fa-check" style={{ color: '#22c55e' }}></i>
+                  <i className="fa-solid fa-check" style={{ color: '#10b981' }}></i>
                 ) : (
                   <i className="fa-regular fa-copy"></i>
                 )}
               </button>
             </div>
 
-            <div className="contact-info-card glass-card">
-              <div className="contact-icon"><i className="fa-solid fa-phone"></i></div>
-              <div className="contact-details">
-                <span className="contact-label">Phone & WhatsApp</span>
-                <span className="contact-value">+91 7766939312</span>
+            {/* Location Card */}
+            <div className="contact-card-item glass-card">
+              <div className="contact-card-icon">
+                <i className="fa-solid fa-location-dot"></i>
               </div>
-              <button
-                className="copy-btn"
-                title="Copy Phone"
-                onClick={() => handleCopy('+91 7766939312', 'phone')}
-              >
-                {copiedField === 'phone' ? (
-                  <i className="fa-solid fa-check" style={{ color: '#22c55e' }}></i>
-                ) : (
-                  <i className="fa-regular fa-copy"></i>
-                )}
-              </button>
-            </div>
-
-            <div className="contact-info-card glass-card">
-              <div className="contact-icon"><i className="fa-solid fa-location-dot"></i></div>
-              <div className="contact-details">
-                <span className="contact-label">Hometown / State</span>
-                <span className="contact-value">Bihar (Dhamaul), India</span>
+              <div className="contact-card-content">
+                <span className="contact-card-label">Location</span>
+                <span className="contact-card-value">
+                  Bihar (Dhamaul), India
+                </span>
               </div>
             </div>
 
-            {/* Quick Connect Prompt Card */}
-            <div className="glass-card direct-chat-card">
-              <div className="chat-card-head">
-                <span className="live-dot-green"></span>
-                <span className="chat-signal-tag">RAPID TRANSMISSION</span>
+            {/* Availability Note Card */}
+            <div className="contact-card-item glass-card" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', fontSize: '0.85rem', fontWeight: 600 }}>
+                <span className="status-green-dot"></span>
+                <span>Open for Inquiries &amp; Collaborations</span>
               </div>
-              <h4 className="chat-card-title">Direct WhatsApp Instant Connect</h4>
-              <p className="chat-card-desc">Prefer real-time technical discussions or fast project consultations?</p>
-              <a
-                href="https://wa.me/917766939312?text=Hi%20Ramri%20Shubham%20Kumar,%20I%20am%20contacting%20you%20from%20your%20ECE%20Portfolio."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-whatsapp-direct btn-glow"
-              >
-                <i className="fa-brands fa-whatsapp"></i> Chat on WhatsApp
-              </a>
+              <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
+                Feel free to email directly at <strong>rsk149652@gmail.com</strong> for project discussions, design work, or technical collaborations.
+              </p>
             </div>
+
           </div>
 
-          {/* Contact Form Column */}
-          <div className="contact-form-column glass-card" data-reveal>
-            <div className="form-header">
-              <div className="form-header-badge">
-                <i className="fa-solid fa-tower-broadcast"></i>
-                <span>EMAILJS DISPATCH ACTIVE</span>
+          {/* Right Column: Sleek Message Form */}
+          <div className="contact-form-col" data-reveal>
+            <div className="contact-form-card glass-card">
+              
+              <div className="form-card-header">
+                <h3 className="form-card-title">Send a Message</h3>
+                <p className="form-card-subtitle">Fill out the details below and I'll respond as soon as possible.</p>
               </div>
-              <h3>Send a Message</h3>
-              <p>Direct transmission to Ramri Shubham Kumar's inbox.</p>
-            </div>
 
-            <form className="contact-form" id="contact-form" onSubmit={handleSubmit}>
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="name"><i className="fa-solid fa-user"></i> Your Name *</label>
+              <form className="modern-contact-form" onSubmit={handleSubmit}>
+                <div className="form-grid-2col">
+                  
+                  <div className="form-group-item">
+                    <label htmlFor="name" className="form-item-label">
+                      Your Name <span className="required-star">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="e.g. Saurav Sharma"
+                      className="form-item-input"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group-item">
+                    <label htmlFor="email" className="form-item-label">
+                      Email Address <span className="required-star">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="e.g. name@example.com"
+                      className="form-item-input"
+                      required
+                    />
+                  </div>
+
+                </div>
+
+                <div className="form-group-item">
+                  <label htmlFor="subject" className="form-item-label">
+                    Subject
+                  </label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
                     onChange={handleInputChange}
-                    placeholder="e.g. Saurav Sharma"
-                    required
+                    placeholder="e.g. Project Inquiry / Opportunity"
+                    className="form-item-input"
                   />
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="call"><i className="fa-solid fa-phone"></i> Call / Phone No *</label>
-                  <input
-                    type="tel"
-                    id="call"
-                    name="call"
-                    value={formData.call}
+                <div className="form-group-item">
+                  <label htmlFor="message" className="form-item-label">
+                    Your Message <span className="required-star">*</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    value={formData.message}
                     onChange={handleInputChange}
-                    placeholder="e.g. +91 9876543210"
+                    placeholder="Describe your project, question, or opportunity..."
+                    className="form-item-textarea"
                     required
-                  />
+                  ></textarea>
                 </div>
-              </div>
 
-              <div className="form-group">
-                <label htmlFor="email"><i className="fa-solid fa-envelope"></i> Email Address *</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="e.g. name@example.com"
-                  required
-                />
-              </div>
+                <button
+                  type="submit"
+                  className="form-submit-pill-btn"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <i className="fa-solid fa-spinner fa-spin"></i>
+                      <span>Sending Message...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Send Message</span>
+                      <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                    </>
+                  )}
+                </button>
 
-              <div className="form-group">
-                <label htmlFor="message"><i className="fa-solid fa-message"></i> Message / Technical Inquiry *</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  placeholder="Describe your project, question, or opportunity..."
-                  required
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                id="form-submit-btn"
-                className="btn btn-primary btn-glow btn-full"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  <>
-                    <i className="fa-solid fa-spinner fa-spin"></i> Dispatching via EmailJS...
-                  </>
-                ) : (
-                  <>
-                    <i className="fa-solid fa-paper-plane"></i> Send Message (EmailJS)
-                  </>
+                {formStatus.message && (
+                  <div className={`form-feedback-message ${formStatus.type}`}>
+                    {formStatus.message}
+                  </div>
                 )}
-              </button>
+              </form>
 
-              {formStatus.message && (
-                <div className={`form-status ${formStatus.type || ''}`}>
-                  {formStatus.message}
-                </div>
-              )}
-            </form>
+            </div>
           </div>
+
         </div>
+
       </div>
     </section>
   );

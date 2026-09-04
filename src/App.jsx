@@ -6,19 +6,13 @@ import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { HeroSection } from './components/hero/HeroSection';
 import { AboutSection } from './components/about/AboutSection';
-import { SkillsSection } from './components/skills/SkillsSection';
-import { ProjectsSection } from './components/projects/ProjectsSection';
-import { ProjectModal } from './components/projects/ProjectModal';
-import { LabSection } from './components/lab/LabSection';
 import { TimelineSection } from './components/timeline/TimelineSection';
-import { CertificationsSection } from './components/certifications/CertificationsSection';
 import { AchievementsSection } from './components/achievements/AchievementsSection';
 import { ContactSection } from './components/contact/ContactSection';
 import { ToastContainer } from './components/contact/ToastContainer';
 import { ResumeModal } from './components/resume/ResumeModal';
 
 export const AppContent = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [toasts, setToasts] = useState([]);
 
@@ -36,7 +30,7 @@ export const AppContent = () => {
 
   return (
     <>
-      {/* Interactive Circuit Particle Canvas */}
+      {/* Interactive Ambient Background */}
       <CircuitBackground />
 
       {/* Ambient Glow Elements */}
@@ -51,11 +45,7 @@ export const AppContent = () => {
       <main>
         <HeroSection onOpenResume={() => setIsResumeOpen(true)} />
         <AboutSection />
-        <SkillsSection />
-        <ProjectsSection onSelectProject={(project) => setSelectedProject(project)} />
-        <LabSection />
         <TimelineSection />
-        <CertificationsSection />
         <AchievementsSection />
         <ContactSection onShowToast={showToast} />
       </main>
@@ -63,13 +53,7 @@ export const AppContent = () => {
       {/* Footer */}
       <Footer />
 
-      {/* Modals & Portals */}
-      <ProjectModal
-        project={selectedProject}
-        isOpen={Boolean(selectedProject)}
-        onClose={() => setSelectedProject(null)}
-      />
-
+      {/* Resume Modal */}
       <ResumeModal
         isOpen={isResumeOpen}
         onClose={() => setIsResumeOpen(false)}

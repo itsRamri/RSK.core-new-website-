@@ -3,7 +3,7 @@ import { useTheme } from '../../context/ThemeContext';
 
 export const CircuitBackground = () => {
   const canvasRef = useRef(null);
-  const { theme } = useTheme();
+  const { mode } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -24,14 +24,14 @@ export const CircuitBackground = () => {
 
     const createNodes = () => {
       nodes = [];
-      const count = Math.min(40, Math.max(18, Math.floor((width * height) / 35000)));
+      const count = Math.min(32, Math.max(16, Math.floor((width * height) / 45000)));
       for (let i = 0; i < count; i++) {
         nodes.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          radius: Math.random() * 1.5 + 1.5
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          radius: Math.random() * 1.5 + 1
         });
       }
     };
@@ -61,10 +61,11 @@ export const CircuitBackground = () => {
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
 
-      let traceColor = '0, 240, 255';
-      if (theme === 'purple') traceColor = '192, 132, 252';
-      if (theme === 'green') traceColor = '16, 185, 129';
-      if (theme === 'orange') traceColor = '245, 158, 11';
+      // Clean monochrome neutral tones without any blue tint
+      const isDark = mode === 'dark';
+      const traceRgb = isDark ? '255, 255, 255' : '0, 0, 0';
+      const nodeAlpha = isDark ? 0.25 : 0.08;
+      const lineAlpha = isDark ? 0.08 : 0.04;
 
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
@@ -80,7 +81,7 @@ export const CircuitBackground = () => {
           const dy = mouse.y - n.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < mouse.radius && dist > 0) {
-            const force = (1 - dist / mouse.radius) * 0.03;
+            const force = (1 - dist / mouse.radius) * 0.02;
             n.x += dx * force;
             n.y += dy * force;
           }
@@ -88,7 +89,7 @@ export const CircuitBackground = () => {
 
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${traceColor}, 0.7)`;
+        ctx.fillStyle = `rgba(${traceRgb}, ${nodeAlpha})`;
         ctx.fill();
 
         for (let j = i + 1; j < nodes.length; j++) {
@@ -104,7 +105,7 @@ export const CircuitBackground = () => {
               ctx.lineTo(n.x, n2.y);
             }
             ctx.lineTo(n2.x, n2.y);
-            ctx.strokeStyle = `rgba(${traceColor}, ${(1 - dist / 110) * 0.22})`;
+            ctx.strokeStyle = `rgba(${traceRgb}, ${(1 - dist / 110) * lineAlpha})`;
             ctx.lineWidth = 1;
             ctx.stroke();
           }
@@ -123,7 +124,21 @@ export const CircuitBackground = () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [theme]);
+  }, [mode]);
 
-  return <canvas id="circuit-canvas" ref={canvasRef} className="circuit-canvas" />;
+  return (
+    <canvas 
+      id="circuit-canvas" 
+      ref={canvasRef} 
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 0,
+        pointerEvents: 'none'
+      }} 
+    />
+  );
 };
