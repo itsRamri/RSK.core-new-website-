@@ -28,17 +28,6 @@ export const HeroSection = ({ onOpenResume }) => {
                 <span>Let's Collaborate</span>
                 <i className="fa-solid fa-arrow-up-right-from-square"></i>
               </a>
-              {onOpenResume && (
-                <button
-                  type="button"
-                  className="hero-secondary-pill-btn"
-                  onClick={onOpenResume}
-                  aria-label="View Resume"
-                >
-                  <i className="fa-solid fa-file-lines"></i>
-                  <span>Resume</span>
-                </button>
-              )}
             </div>
           </div>
 
