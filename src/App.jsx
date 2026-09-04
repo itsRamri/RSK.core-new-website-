@@ -33,11 +33,6 @@ export const AppContent = () => {
       {/* Interactive Ambient Background */}
       <CircuitBackground />
 
-      {/* Ambient Glow Elements */}
-      <div className="ambient-glow glow-1"></div>
-      <div className="ambient-glow glow-2"></div>
-      <div className="ambient-glow glow-3"></div>
-
       {/* Primary Header / Navigation */}
       <Navbar />
 
