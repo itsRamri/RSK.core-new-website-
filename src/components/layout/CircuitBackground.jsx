@@ -61,11 +61,12 @@ export const CircuitBackground = () => {
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Clean monochrome neutral tones without any blue tint
+      // Theme-specific circuit colors (Dark: Grid/blue accent #12304A & Subtle blue glow #0A2A4A)
       const isDark = mode === 'dark';
-      const traceRgb = isDark ? '255, 255, 255' : '0, 0, 0';
-      const nodeAlpha = isDark ? 0.25 : 0.08;
-      const lineAlpha = isDark ? 0.08 : 0.04;
+      const traceRgb = isDark ? '18, 48, 74' : '0, 0, 0';
+      const nodeRgb = isDark ? '56, 189, 248' : '0, 0, 0';
+      const nodeAlpha = isDark ? 0.35 : 0.08;
+      const lineAlpha = isDark ? 0.45 : 0.04;
 
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
@@ -89,7 +90,7 @@ export const CircuitBackground = () => {
 
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${traceRgb}, ${nodeAlpha})`;
+        ctx.fillStyle = `rgba(${nodeRgb}, ${nodeAlpha})`;
         ctx.fill();
 
         for (let j = i + 1; j < nodes.length; j++) {
