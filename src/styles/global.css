@@ -971,15 +971,13 @@ body[data-mode="dark"] .hero-golden-aura {
   padding: 2.2rem;
 }
 
-.bio-header {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--text-main);
+.bio-title {
+  font-family: var(--font-heading);
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--text-heading);
+  letter-spacing: -0.015em;
   margin-bottom: 1.25rem;
-  font-weight: 700;
 }
 
 .bio-body {

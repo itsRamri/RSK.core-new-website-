@@ -107,10 +107,7 @@ export const AboutSection = () => {
           {/* Description & Terminal */}
           <div className="about-details" data-reveal>
             <div className="glass-card bio-card">
-              <div className="bio-header">
-                <i className="fa-solid fa-terminal"></i>
-                <span>RSK_SYS_PROFILE.INIT()</span>
-              </div>
+              <h3 className="bio-title">Profile</h3>
               <div className="bio-body">
                 <p>
                   I am <strong>Ramri Shubham Kumar (RSK)</strong>, an enthusiastic <strong>Electronics & Communication Engineering</strong> student (Session 2024–2027) based in <strong>Bihar (Dhamaul)</strong>. Having secured <strong>88.69% in CBSE Matriculation (2024) from Mannat Public School</strong>, I bring dedication, precision, and passion to hardware and firmware design.
