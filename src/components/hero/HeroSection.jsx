@@ -10,7 +10,7 @@ export const HeroSection = ({ onOpenResume }) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !animatedRef.current) {
           animatedRef.current = true;
-          
+
           let scoreVal = 0;
           let projVal = 0;
           let toolVal = 0;
@@ -51,7 +51,7 @@ export const HeroSection = ({ onOpenResume }) => {
   return (
     <section className="hero-modern-section" id="hero">
       <div className="container hero-container">
-        
+
         {/* Giant Typographic Title in Background */}
         <div className="hero-giant-typography" data-reveal>
           <span className="hero-title-outline">SHUBHAM</span>
@@ -60,19 +60,19 @@ export const HeroSection = ({ onOpenResume }) => {
 
         {/* Center Main Stage (Left Info + Center Portrait + Right Socials) */}
         <div className="hero-main-stage">
-          
+
           {/* Left Column: Role & CTA */}
           <div className="hero-left-column" data-reveal>
             <div className="hero-role-badge">
               <span className="badge-pulse-dot"></span>
               <span>Available for Freelance & Full-time</span>
             </div>
-            
+
             <h1 className="hero-role-title">
               UI/UX Designer <span className="highlight">&amp;</span> <br />
               ECE Engineer
             </h1>
-            
+
             <p className="hero-role-desc">
               Designing digital products and intelligent hardware architectures that are clear, usable, and conversion-focused.
             </p>
@@ -83,8 +83,8 @@ export const HeroSection = ({ onOpenResume }) => {
                 <i className="fa-solid fa-arrow-up-right-from-square"></i>
               </a>
 
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="hero-secondary-pill-btn"
                 onClick={onOpenResume}
               >
@@ -112,10 +112,10 @@ export const HeroSection = ({ onOpenResume }) => {
           {/* Right Column: Social Pills */}
           <div className="hero-right-column" data-reveal>
             <div className="social-pills-list">
-              <a 
-                href="https://linkedin.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="social-pill-card"
                 aria-label="LinkedIn"
               >
@@ -124,10 +124,10 @@ export const HeroSection = ({ onOpenResume }) => {
                 <i className="fa-solid fa-arrow-up-right-from-square social-pill-arrow"></i>
               </a>
 
-              <a 
-                href="https://github.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="social-pill-card"
                 aria-label="GitHub"
               >
@@ -136,8 +136,8 @@ export const HeroSection = ({ onOpenResume }) => {
                 <i className="fa-solid fa-arrow-up-right-from-square social-pill-arrow"></i>
               </a>
 
-              <a 
-                href="mailto:rsk149652@gmail.com" 
+              <a
+                href="mailto:rsk149652@gmail.com"
                 className="social-pill-card"
                 aria-label="Email"
               >
@@ -146,10 +146,10 @@ export const HeroSection = ({ onOpenResume }) => {
                 <i className="fa-solid fa-arrow-up-right-from-square social-pill-arrow"></i>
               </a>
 
-              <a 
-                href="https://instagram.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="social-pill-card"
                 aria-label="Instagram"
               >
@@ -158,10 +158,10 @@ export const HeroSection = ({ onOpenResume }) => {
                 <i className="fa-solid fa-arrow-up-right-from-square social-pill-arrow"></i>
               </a>
 
-              <a 
-                href="https://dribbble.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://dribbble.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="social-pill-card"
                 aria-label="Dribbble"
               >

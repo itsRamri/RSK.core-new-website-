@@ -8,10 +8,10 @@ export const Footer = () => {
   return (
     <footer className="modern-footer-section">
       <div className="container footer-container">
-        
+
         {/* Top Tier: Brand, Role & Socials */}
         <div className="footer-top-grid">
-          
+
           <div className="footer-brand-column">
             <div className="footer-brand-title">
               <span>SHUBHAM</span> <span className="highlight">KUMAR</span>
@@ -39,8 +39,8 @@ export const Footer = () => {
           <div className="footer-connect-column">
             <h4 className="footer-col-heading">Connect With Me</h4>
             <div className="footer-social-icons">
-              <a 
-                href="mailto:rsk149652@gmail.com" 
+              <a
+                href="mailto:rsk149652@gmail.com"
                 className="footer-social-pill"
                 aria-label="Email"
               >
@@ -48,10 +48,10 @@ export const Footer = () => {
                 <span>Email</span>
               </a>
 
-              <a 
-                href="https://linkedin.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="footer-social-pill"
                 aria-label="LinkedIn"
               >
@@ -59,10 +59,10 @@ export const Footer = () => {
                 <span>LinkedIn</span>
               </a>
 
-              <a 
-                href="https://github.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="footer-social-pill"
                 aria-label="GitHub"
               >
@@ -70,10 +70,10 @@ export const Footer = () => {
                 <span>GitHub</span>
               </a>
 
-              <a 
-                href="https://instagram.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="footer-social-pill"
                 aria-label="Instagram"
               >
@@ -96,9 +96,9 @@ export const Footer = () => {
             © {new Date().getFullYear()} <strong>Ramri Shubham Kumar</strong>. All rights reserved.
           </p>
 
-          <button 
-            type="button" 
-            onClick={scrollToTop} 
+          <button
+            type="button"
+            onClick={scrollToTop}
             className="footer-back-to-top-btn"
             aria-label="Back to Top"
           >
