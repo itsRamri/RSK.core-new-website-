@@ -6,9 +6,9 @@ export const HeroPortraitCanvas = () => {
   return (
     <div className={`hero-cutout-wrapper ${isLoaded ? 'loaded' : ''}`}>
       <img
-        src="/ezgif-476a1f2348609364-jpg/profile.jpeg"
-        alt="Shubham Kumar - Electronics & Communication Engineer"
-        className="hero-cutout-canvas hero-profile-img"
+        src="/ezgif-476a1f2348609364-jpg/shubham-cutout.png"
+        alt="Shubham Kumar - Portfolio Portrait"
+        className="hero-cutout-canvas"
         onLoad={() => setIsLoaded(true)}
         loading="eager"
         decoding="async"

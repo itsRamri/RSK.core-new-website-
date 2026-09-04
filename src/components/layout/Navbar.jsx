@@ -40,11 +40,11 @@ export const Navbar = () => {
     <header className={`modern-navbar-header ${isScrolled ? 'scrolled' : ''}`} id="header">
       <div className="container nav-wrapper">
         
-        {/* Left: Status Badge / Available for New Project */}
+        {/* Left: Brand Logo */}
         <div className="nav-left-section">
-          <a href="#contact" className="nav-status-pill" title="Currently available for hire and freelance projects">
-            <span className="status-green-dot"></span>
-            <span className="status-label">Available for New Project</span>
+          <a href="#hero" className="nav-brand-logo" title="RSK - Shubham Kumar">
+            <span className="brand-dot"></span>
+            <span className="brand-name">RSK</span>
           </a>
         </div>
 

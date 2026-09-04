@@ -4,61 +4,75 @@ import { HeroPortraitCanvas } from './HeroPortraitCanvas';
 export const HeroSection = ({ onOpenResume }) => {
   return (
     <section className="hero-modern-section" id="hero">
-      
-      {/* Warm Golden Luminous Aura (Exact Reference Vibe) */}
-      <div className="hero-golden-aura" aria-hidden="true"></div>
-
       <div className="container hero-container">
+        
+        {/* Giant Headline (Behind Portrait) - DYMAS ALFIN Style */}
+        <h1 className="hero-dymas-title" data-reveal aria-label="Shubham Kumar">
+          <span className="hero-dymas-outline">SHUBHAM</span>
+          <span className="hero-dymas-solid">KUMAR</span>
+        </h1>
 
-        {/* 1. Top Flowing Script "Hey, there" Framing the Head */}
-        <div className="hero-script-header" data-reveal aria-hidden="true">
-          <span className="hero-script-left">Hey,</span>
-          <span className="hero-script-right">there</span>
-        </div>
+        {/* 3-Column Content Layer Framing the Center Cutout */}
+        <div className="hero-dymas-stage">
 
-        {/* 2. 3-Column Editorial Stage Framing the Portrait */}
-        <div className="hero-editorial-stage">
-
-          {/* Left Column: Status Badge, "I AM SHUBHAM", Bio & CTA */}
-          <div className="hero-left-editorial" data-reveal>
-            <div className="hero-editorial-status-pill">
-              <span className="status-orange-dot"></span>
-              <span>Available for new opportunities</span>
-            </div>
-
-            <div className="hero-name-block">
-              <span className="hero-name-intro">I AM</span>
-              <h1 className="hero-name-main">SHUBHAM</h1>
-              <span className="hero-name-last">KUMAR</span>
-            </div>
-
-            <p className="hero-role-desc">
-              Building technology-driven digital solutions with electronics, communication, and modern web technologies.
+          {/* Left Column: Role, Description, CTA Button */}
+          <div className="hero-dymas-left" data-reveal>
+            <h2 className="hero-dymas-role">Electronics & Communication Engineer</h2>
+            <p className="hero-dymas-desc">
+              Designing digital products and intelligent hardware systems that are clear, usable, and innovation-focused.
             </p>
-
             <div className="hero-cta-actions">
-              <a href="#contact" className="hero-primary-pill-btn">
-                <span>Let's Collaborate</span>
+              <a href="#contact" className="hero-dymas-btn">
+                <span>Let's collaborate</span>
                 <i className="fa-solid fa-arrow-up-right-from-square"></i>
               </a>
             </div>
           </div>
 
-          {/* Center Column: Cutout Foreground Subject (Main Visual Focus) */}
+          {/* Center Column: Cutout Portrait (Main Visual Focus) */}
           <div className="hero-center-portrait" data-reveal>
             <HeroPortraitCanvas />
           </div>
 
-          {/* Right Column: Specialty Note at Top, Stacked Role Title at Bottom */}
-          <div className="hero-right-editorial" data-reveal>
-            <p className="hero-specialty-note">
-              Specialized in Embedded Systems, IoT, PCB Design, and Modern Web Development.
-            </p>
+          {/* Right Column: Social Pills List */}
+          <div className="hero-dymas-right" data-reveal>
+            <div className="social-pills-list">
 
-            <div className="hero-stacked-role-block">
-              <span>ELECTRONICS &</span>
-              <span>COMMUNICATION</span>
-              <span>ENGINEER</span>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-pill-card"
+                aria-label="Instagram"
+              >
+                <div className="social-pill-icon"><i className="fa-brands fa-instagram"></i></div>
+                <span className="social-pill-name">Instagram</span>
+                <i className="fa-solid fa-arrow-up-right-from-square social-pill-arrow"></i>
+              </a>
+
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-pill-card"
+                aria-label="LinkedIn"
+              >
+                <div className="social-pill-icon"><i className="fa-brands fa-linkedin-in"></i></div>
+                <span className="social-pill-name">LinkedIn</span>
+                <i className="fa-solid fa-arrow-up-right-from-square social-pill-arrow"></i>
+              </a>
+
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-pill-card"
+                aria-label="GitHub"
+              >
+                <div className="social-pill-icon"><i className="fa-brands fa-github"></i></div>
+                <span className="social-pill-name">GitHub</span>
+                <i className="fa-solid fa-arrow-up-right-from-square social-pill-arrow"></i>
+              </a>
             </div>
           </div>
 
