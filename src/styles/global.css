@@ -1621,7 +1621,7 @@ a.contact-card-value:hover {
 
   .hero-cutout-wrapper {
     max-width: 440px;
-    margin-top: -3rem;
+    margin-top: -2rem;
   }
 
   .hero-cutout-canvas {
@@ -1666,6 +1666,16 @@ a.contact-card-value:hover {
 }
 
 @media (max-width: 768px) {
+  .hero-modern-section {
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+    min-height: auto;
+  }
+
+  .hero-container {
+    gap: 1.25rem;
+  }
+
   .nav-center-menu {
     position: fixed;
     top: 75px;
@@ -1700,23 +1710,65 @@ a.contact-card-value:hover {
     display: none;
   }
 
+  /* Mobile Typography: clean and centered above the portrait */
   .hero-giant-typography {
-    font-size: clamp(2.4rem, 12vw, 4.5rem);
+    font-size: clamp(2.2rem, 11vw, 3.6rem);
     flex-direction: column;
-    gap: 0.2rem;
-    margin-bottom: -1.2rem;
+    gap: 0.15rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 0.95;
+    position: relative;
+    z-index: 1;
   }
 
+  .hero-main-stage {
+    gap: 1.5rem;
+    padding-bottom: 0;
+  }
+
+  /* Mobile Portrait: positioned slightly down between heading & role text */
   .hero-cutout-wrapper {
-    max-width: 320px;
-    margin-top: -1.2rem;
+    max-width: 290px;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    transform: translateY(28px);
+  }
+
+  .hero-cutout-wrapper.loaded {
+    transform: translateY(28px);
   }
 
   .hero-cutout-canvas {
-    max-width: 300px;
+    max-width: 280px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
   }
 
+  .hero-left-column {
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 0;
+  }
 
+  .hero-role-title {
+    font-size: clamp(1.4rem, 5.5vw, 1.85rem);
+    text-align: center;
+    margin-bottom: 0.65rem;
+  }
+
+  .hero-role-desc {
+    font-size: 0.9rem;
+    text-align: center;
+    max-width: 360px;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-cta-actions {
+    justify-content: center;
+  }
 
   .hero-metrics-strip {
     flex-direction: column;
@@ -1744,5 +1796,46 @@ a.contact-card-value:hover {
   .footer-bottom-bar {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-giant-typography {
+    font-size: clamp(1.95rem, 10.5vw, 2.8rem);
+    margin-bottom: 0.35rem;
+  }
+
+  .hero-cutout-wrapper {
+    max-width: 250px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.35rem;
+    transform: translateY(22px);
+  }
+
+  .hero-cutout-wrapper.loaded {
+    transform: translateY(22px);
+  }
+
+  .hero-cutout-canvas {
+    max-width: 240px;
+  }
+
+  .hero-role-title {
+    font-size: 1.35rem;
+  }
+
+  .hero-role-desc {
+    font-size: 0.85rem;
+    padding: 0 0.5rem;
+    max-width: 320px;
+  }
+
+  .social-pills-list {
+    gap: 0.5rem;
+  }
+
+  .social-pill-card {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.82rem;
   }
 }
