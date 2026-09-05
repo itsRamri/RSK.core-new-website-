@@ -6,7 +6,7 @@ export const THEMES = ['cyan', 'purple', 'green', 'orange', 'dark-minimal'];
 
 export const ThemeProvider = ({ children }) => {
   const [mode, setMode] = useState(() => {
-    return localStorage.getItem('rsk-theme-mode') || 'dark';
+    return localStorage.getItem('rsk-theme-mode') || 'light';
   });
 
   const [theme, setTheme] = useState(() => {

@@ -30,10 +30,11 @@ export const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { label: 'About', href: '#about', id: 'about' },
-    { label: 'Experience', href: '#experience', id: 'experience' },
-    { label: 'Work', href: '#achievements', id: 'achievements' },
-    { label: 'Contact', href: '#contact', id: 'contact' },
+    { label: 'HOME', href: '#hero', id: 'hero' },
+    { label: 'ABOUT', href: '#about', id: 'about' },
+    { label: 'PROJECTS', href: '#achievements', id: 'achievements' },
+    { label: 'SKILLS', href: '#timeline', id: 'timeline' },
+    { label: 'CONTACT', href: '#contact', id: 'contact' },
   ];
 
   return (
@@ -43,8 +44,7 @@ export const Navbar = () => {
         {/* Left: Brand Logo */}
         <div className="nav-left-section">
           <a href="#hero" className="nav-brand-logo" title="RSK - Shubham Kumar">
-            <span className="brand-dot"></span>
-            <span className="brand-name">RSK</span>
+            <span className="brand-name">RSK<span className="brand-dot-accent">.</span></span>
           </a>
         </div>
 
@@ -59,9 +59,7 @@ export const Navbar = () => {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <span className="nav-link-text">{link.label}</span>
-                  {link.count && (
-                    <span className="nav-link-count">{link.count}</span>
-                  )}
+                  {activeSection === link.id && <span className="nav-active-bar" />}
                 </a>
               </li>
             ))}
