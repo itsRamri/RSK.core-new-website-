@@ -30,7 +30,7 @@ export const Footer = () => {
             <ul className="footer-nav-list">
               <li><a href="#hero" className="footer-nav-link">Home</a></li>
               <li><a href="#about" className="footer-nav-link">About Me</a></li>
-              <li><a href="#experience" className="footer-nav-link">Education &amp; Journey</a></li>
+              <li><a href="#timeline" className="footer-nav-link">Education &amp; Journey</a></li>
               <li><a href="#achievements" className="footer-nav-link">Achievements</a></li>
               <li><a href="#contact" className="footer-nav-link">Get in Touch</a></li>
             </ul>

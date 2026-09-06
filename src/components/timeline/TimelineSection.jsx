@@ -3,7 +3,7 @@ import { timelineData } from '../../data/siteData';
 
 export const TimelineSection = () => {
   return (
-    <section className="section timeline-section" id="experience">
+    <section className="section timeline-section" id="timeline">
       <div className="container">
         <div className="section-header" data-reveal>
           <span className="section-tag">
