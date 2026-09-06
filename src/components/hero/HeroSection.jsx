@@ -18,7 +18,7 @@ export const HeroSection = ({ onOpenResume }) => {
         {/* ============================================================
             LEFT COLUMN: Bio, Title, CTA & Metric Strip
             ============================================================ */}
-        <div className="hero-left-column" data-reveal>
+        <div className="hero-left-column">
           
           {/* Eyebrow / Category Tag */}
           <div className="hero-eyebrow-wrapper">
@@ -179,7 +179,7 @@ export const HeroSection = ({ onOpenResume }) => {
         <div className="hero-right-column">
           
           {/* Vertical Mantra */}
-          <div className="hero-mantra-list" data-reveal>
+          <div className="hero-mantra-list">
             <div className="mantra-item">
               <span className="mantra-dot"></span>
               <span className="mantra-text">DREAM</span>

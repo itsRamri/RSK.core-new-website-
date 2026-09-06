@@ -29,6 +29,15 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close menu on ESC key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setIsMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const navLinks = [
     { label: 'HOME', href: '#hero', id: 'hero' },
     { label: 'ABOUT', href: '#about', id: 'about' },
@@ -38,77 +47,88 @@ export const Navbar = () => {
   ];
 
   return (
-    <header className={`modern-navbar-header ${isScrolled ? 'scrolled' : ''}`} id="header">
-      <div className="container nav-wrapper">
-        
-        {/* Left: Brand Logo */}
-        <div className="nav-left-section">
-          <a href="#hero" className="nav-brand-logo" title="RSK - Shubham Kumar">
-            <span className="brand-name">RSK<span className="brand-dot-accent">.</span></span>
-          </a>
-        </div>
-
-        {/* Center: Navigation Links */}
-        <nav className={`nav-center-menu ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
-          <ul className="nav-links-list">
-            {navLinks.map((link) => (
-              <li key={link.id} className="nav-item">
-                <a
-                  href={link.href}
-                  className={`nav-link-item ${activeSection === link.id ? 'active' : ''}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <span className="nav-link-text">{link.label}</span>
-                  {activeSection === link.id && <span className="nav-active-bar" />}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-
-        {/* Right: Actions (Theme Light/Dark Toggle & Let's Talk CTA) */}
-        <div className="nav-right-actions">
+    <>
+      <header className={`modern-navbar-header ${isScrolled ? 'scrolled' : ''}`} id="header">
+        <div className="container nav-wrapper">
           
-          {/* Light / Dark Mode Toggle Button */}
-          <button
-            type="button"
-            className="theme-mode-toggle"
-            onClick={toggleMode}
-            title={`Switch to ${mode === 'light' ? 'Dark' : 'Light'} Mode`}
-            aria-label="Toggle theme appearance"
-          >
-            {mode === 'light' ? (
-              <i className="fa-solid fa-moon"></i>
-            ) : (
-              <i className="fa-solid fa-sun"></i>
-            )}
-          </button>
+          {/* Left: Brand Logo */}
+          <div className="nav-left-section">
+            <a href="#hero" className="nav-brand-logo" title="RSK - Shubham Kumar">
+              <span className="brand-name">RSK<span className="brand-dot-accent">.</span></span>
+            </a>
+          </div>
 
-          {/* Let's Talk CTA Button */}
-          <a
-            href="#contact"
-            className="nav-cta-talk-btn"
-          >
-            <span>Let's Talk</span>
-            <i className="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
+          {/* Center: Navigation Links */}
+          <nav className={`nav-center-menu ${isMobileMenuOpen ? 'mobile-open' : ''}`} aria-label="Main Navigation">
+            <ul className="nav-links-list">
+              {navLinks.map((link) => (
+                <li key={link.id} className="nav-item">
+                  <a
+                    href={link.href}
+                    className={`nav-link-item ${activeSection === link.id ? 'active' : ''}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <span className="nav-link-text">{link.label}</span>
+                    {activeSection === link.id && <span className="nav-active-bar" />}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-          {/* Mobile Hamburger Button */}
-          <button
-            className="nav-mobile-hamburger"
-            id="mobile-hamburger-btn"
-            aria-label="Toggle navigation menu"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <span className={`bar ${isMobileMenuOpen ? 'bar-top' : ''}`}></span>
-            <span className={`bar ${isMobileMenuOpen ? 'bar-mid' : ''}`}></span>
-            <span className={`bar ${isMobileMenuOpen ? 'bar-bot' : ''}`}></span>
-          </button>
+          {/* Right: Actions (Theme Light/Dark Toggle & Let's Talk CTA) */}
+          <div className="nav-right-actions">
+            
+            {/* Light / Dark Mode Toggle Button */}
+            <button
+              type="button"
+              className="theme-mode-toggle"
+              onClick={toggleMode}
+              title={`Switch to ${mode === 'light' ? 'Dark' : 'Light'} Mode`}
+              aria-label="Toggle theme appearance"
+            >
+              {mode === 'light' ? (
+                <i className="fa-solid fa-moon"></i>
+              ) : (
+                <i className="fa-solid fa-sun"></i>
+              )}
+            </button>
+
+            {/* Let's Talk CTA Button */}
+            <a
+              href="#contact"
+              className="nav-cta-talk-btn"
+            >
+              <span>Let's Talk</span>
+              <i className="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+
+            {/* Mobile Hamburger Button */}
+            <button
+              className={`nav-mobile-hamburger ${isMobileMenuOpen ? 'open' : ''}`}
+              id="mobile-hamburger-btn"
+              aria-label="Toggle navigation menu"
+              aria-expanded={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <span className="bar bar-top"></span>
+              <span className="bar bar-mid"></span>
+              <span className="bar bar-bot"></span>
+            </button>
+
+          </div>
 
         </div>
+      </header>
 
-      </div>
-    </header>
+      {/* Mobile Menu Backdrop */}
+      {isMobileMenuOpen && (
+        <div 
+          className="mobile-nav-backdrop" 
+          onClick={() => setIsMobileMenuOpen(false)} 
+          aria-hidden="true" 
+        />
+      )}
+    </>
   );
 };
