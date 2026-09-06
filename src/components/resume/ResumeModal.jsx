@@ -40,7 +40,7 @@ export const ResumeModal = ({ isOpen, onClose }) => {
             <div className="resume-section-item">
               <h4><i className="fa-solid fa-microchip"></i> Core Technical Skills</h4>
               <p>
-                Embedded Systems, Microcontrollers (ESP32, STM32, Arduino), IoT Protocols (MQTT, HTTP, BLE), PCB Design (KiCad, Altium), C/C++, Python, MATLAB, Digital & Analog Electronics.
+                PCB Designing (OrCAD Capture CIS 17.2 Version), Schematic Capture, Circuit Design, Electronic Components, Digital & Analog Electronics.
               </p>
             </div>
             <div className="resume-section-item">

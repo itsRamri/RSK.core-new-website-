@@ -182,7 +182,7 @@ export const ContactSection = ({ onShowToast }) => {
           </div>
 
           {/* Right Column: Sleek Message Form */}
-          <div className="contact-form-col" data-reveal>
+          <div className="contact-form-col" data-reveal id="contact-form">
             <div className="contact-form-card glass-card">
               
               <div className="form-card-header">

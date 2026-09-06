@@ -28,10 +28,10 @@ export const timelineData = [
     dotIcon: 'fa-solid fa-chalkboard-user',
     year: '2024 - Present',
     tag: 'PRACTICAL TRAINING',
-    title: 'Embedded Systems & PCB Design Prototyping',
-    subtitle: 'Self-Directed R&D & Technical Workshops',
-    desc: 'Hands-on practical development with ESP32, Arduino, STM32 microcontrollers, sensor interfacing, and multi-layer schematic layout using KiCad and EasyEDA.',
-    badges: ['KiCad', 'ESP32', 'STM32', 'IoT Sensors']
+    title: 'PCB Designing & Schematic Capture',
+    subtitle: 'Cadence OrCAD Capture CIS 17.2',
+    desc: 'Hands-on practical development with PCB schematic capture, electronic circuit design, component library management, and PCB designing using OrCAD Capture CIS 17.2 version.',
+    badges: ['OrCAD Capture CIS 17.2', 'PCB Designing', 'Schematic Capture', 'Circuits']
   }
 ];
 
@@ -62,9 +62,9 @@ export const certsData = [
   },
   {
     id: 'c4',
-    issuer: 'Autodesk / Altium',
-    title: 'Professional PCB Design & Schematic Capture',
-    meta: 'Issued: 2024 • ID: ALT-PCB-99120',
+    issuer: 'Cadence / OrCAD',
+    title: 'PCB Designing & Schematic Capture (OrCAD Capture CIS 17.2)',
+    meta: 'Issued: 2024 • ID: ORCAD-PCB-1720',
     icon: 'fa-solid fa-layer-group',
     link: '#certifications'
   }

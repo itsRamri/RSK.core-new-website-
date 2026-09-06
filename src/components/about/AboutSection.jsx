@@ -146,8 +146,8 @@ export const AboutSection = () => {
                 <div className="spec-item">
                   <div className="spec-icon"><i className="fa-solid fa-microchip"></i></div>
                   <div className="spec-content">
-                    <span className="spec-label">Core Focus</span>
-                    <span className="spec-val">IoT, Embedded Systems, PCB</span>
+                    <span className="spec-label">Core Skill</span>
+                    <span className="spec-val">PCB Designing (OrCAD Capture CIS 17.2)</span>
                   </div>
                 </div>
               </div>

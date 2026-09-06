@@ -96,8 +96,20 @@ export const Navbar = () => {
 
             {/* Let's Talk CTA Button */}
             <a
-              href="#contact"
+              href="#contact-form"
               className="nav-cta-talk-btn"
+              onClick={(e) => {
+                setIsMobileMenuOpen(false);
+                const formElement = document.getElementById('contact-form') || document.getElementById('contact');
+                if (formElement) {
+                  e.preventDefault();
+                  formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  setTimeout(() => {
+                    const nameInput = document.getElementById('name');
+                    if (nameInput) nameInput.focus({ preventScroll: true });
+                  }, 450);
+                }
+              }}
             >
               <span>Let's Talk</span>
               <i className="fa-solid fa-arrow-up-right-from-square"></i>

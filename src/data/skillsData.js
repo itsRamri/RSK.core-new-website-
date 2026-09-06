@@ -37,11 +37,11 @@ export const skillsData = [
   {
     id: 's4',
     category: 'hardware',
-    title: 'PCB Design & EDA',
-    level: 'KiCad, Altium Designer, EasyEDA',
-    percent: 90,
+    title: 'PCB Designing & Schematic Capture',
+    level: 'OrCAD Capture CIS (Version 17.2)',
+    percent: 92,
     icon: 'fa-solid fa-bezier-curve',
-    tags: ['Multi-Layer', 'Schematic', 'Gerber']
+    tags: ['OrCAD Capture CIS 17.2', 'PCB Designing', 'Schematic Capture', 'EDA']
   },
   {
     id: 's5',

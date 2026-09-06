@@ -90,11 +90,11 @@ export const projectsData = [
     architecture: 'Schematic Capture -> Stackup Planning -> High-Speed Routing -> DRC & DFM -> SMT Assembly',
     specs: [
       'Layer Stackup: Signal / GND Plane / Power Plane / Signal (FR4, 1.6mm)',
-      'EDA Tools: KiCad 7.0 & Altium Designer',
+      'EDA Tools: OrCAD Capture CIS 17.2',
       'Features: 50Ω coplanar waveguide RF trace, USB-C ESD protection, LiPo charging IC',
       'Fabrication: Passed automated optical inspection (AOI) with zero DRC violations'
     ],
-    tags: ['KiCad', 'Altium', '4-Layer PCB', 'RF Routing', 'SMT'],
+    tags: ['OrCAD Capture CIS 17.2', 'PCB Designing', 'Schematic Capture', 'DRC'],
     icon: 'fa-solid fa-microchip',
     github: 'https://github.com',
     live: '#projects'
